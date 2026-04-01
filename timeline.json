@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-01",
+  "nodes": [
+    {
+      "id": "t1_crychic_after",
+      "title": "CRYCHIC刚解散（MyGO未成立）",
+      "summary": "CRYCHIC解散后的空窗期，成员关系紧绷，MyGO尚未成形，Ave Mujica也未启动。",
+      "band_status": {
+        "crychic": "disbanded",
+        "mygo": "not_formed",
+        "avemujica": "not_formed"
+      },
+      "character_states": {
+        "tomori": "受CRYCHIC解散影响而更封闭，渴望被理解却不敢靠近。",
+        "anon": "尚未与MyGO结缘，正在寻找能让自己融入的舞台。",
+        "rana": "自由来去，凭直觉靠近音乐现场。",
+        "soyo": "对旧乐队执念很深，外表温柔内心焦虑。",
+        "taki": "防御心强，只对Tomori敞开一点点。",
+        "sakiko": "与旧友疏远，情绪压抑而克制。",
+        "mutsumi": "不善表达，夹在朋友之间选择沉默。",
+        "umiri": "在多支乐队间活动，务实地看待演出与技术。",
+        "uika": "继续偶像组合活动，与Sakiko保持联系。",
+        "nyamu": "专注网络人气与形象经营，尚未进入乐队计划。"
+      }
+    },
+    {
+      "id": "t2_mygo_formed",
+      "title": "MyGO成立并解决矛盾（Ave Mujica未成立）",
+      "summary": "MyGO完成组建并化解矛盾，成员开始真正信任彼此；Ave Mujica尚未出现。",
+      "band_status": {
+        "crychic": "disbanded",
+        "mygo": "formed",
+        "avemujica": "not_formed"
+      },
+      "character_states": {
+        "tomori": "开始用歌词表达内心，逐步建立信任。",
+        "anon": "从“想受欢迎”转向认真投入乐队。",
+        "rana": "仍旧随性，但愿意在关键时刻留下。",
+        "soyo": "慢慢接受现实，开始正视自己的不安。",
+        "taki": "强势依旧但更愿意合作，保护欲转为行动力。",
+        "sakiko": "与旧友保持距离，尚未公开目标。",
+        "mutsumi": "关心Sakiko却迟疑，情绪表达依然克制。",
+        "umiri": "在多支乐队之间平衡，追求稳定表现。",
+        "uika": "继续sumimi活动，温和支持身边人。",
+        "nyamu": "以人气与舞台曝光为优先，寻找更大的舞台。"
+      }
+    },
+    {
+      "id": "t3_both_formed",
+      "title": "MyGO与Ave Mujica全部成立",
+      "summary": "两支乐队都已成形，MyGO继续向前，Ave Mujica以舞台名与强烈风格登场。",
+      "band_status": {
+        "crychic": "disbanded",
+        "mygo": "formed",
+        "avemujica": "formed"
+      },
+      "character_states": {
+        "tomori": "仍会迷惘，但愿意坦白并把音乐当作出口。",
+        "anon": "变得更稳，擅长把团员拢在一起。",
+        "rana": "保持自由气质，同时认可MyGO的羁绊。",
+        "soyo": "学会坦诚面对关系，把乐队当作归处。",
+        "taki": "强势收敛，专注于团队节奏与演出。",
+        "sakiko": "作为Ave Mujica领队，用舞台名与距离感掌控方向。",
+        "mutsumi": "加入Ave Mujica后以行动代替表达，和Sakiko维持默契。",
+        "umiri": "在Ave Mujica中担当稳固基底，作风务实。",
+        "uika": "以Doloris身份登台，情感表达更直接。",
+        "nyamu": "以Amoris身份加入，舞台表现更张扬。"
+      }
+    }
+  ]
+}

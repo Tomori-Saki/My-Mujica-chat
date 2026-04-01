@@ -1,0 +1,204 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-01",
+  "dialogues": [
+    {
+      "id": "ktv_promise",
+      "title": "KTV的约定",
+      "lines": [
+        {
+          "speaker_id": "tomori",
+          "speaker": "高松灯",
+          "text": "一辈子跟我一起组乐团吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第1集"
+        },
+        {
+          "speaker_id": "anon",
+          "speaker": "千早爱音",
+          "text": "人生这么漫长会撑不住的哦",
+          "source": "BanG Dream! It's MyGO!!!!! 第1集"
+        }
+      ]
+    },
+    {
+      "id": "start_talk",
+      "title": "开始沟通",
+      "lines": [
+        {
+          "speaker_id": "anon",
+          "speaker": "千早爱音",
+          "text": "来，开始沟通吧",
+          "source": "BanG Dream! It's MyGO!!!!! 第4集"
+        },
+        {
+          "speaker_id": "taki",
+          "speaker": "椎名立希",
+          "text": "你在开玩笑吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第4集"
+        }
+      ]
+    },
+    {
+      "id": "dont_run",
+      "title": "别逃",
+      "lines": [
+        {
+          "speaker_id": "anon",
+          "speaker": "千早爱音",
+          "text": "不要逃啦",
+          "source": "BanG Dream! It's MyGO!!!!! 第6集"
+        },
+        {
+          "speaker_id": "taki",
+          "speaker": "椎名立希",
+          "text": "不要讲这种话",
+          "source": "BanG Dream! It's MyGO!!!!! 第6集"
+        }
+      ]
+    },
+    {
+      "id": "misunderstand",
+      "title": "误会",
+      "lines": [
+        {
+          "speaker_id": "soyo",
+          "speaker": "长崎爽世",
+          "text": "你误会了",
+          "source": "BanG Dream! It's MyGO!!!!! 第8集"
+        },
+        {
+          "speaker_id": "sakiko",
+          "speaker": "丰川祥子",
+          "text": "到现在还执着于过去，真难看",
+          "source": "BanG Dream! It's MyGO!!!!! 第8集"
+        }
+      ]
+    },
+    {
+      "id": "too_much",
+      "title": "太过分了",
+      "lines": [
+        {
+          "speaker_id": "soyo",
+          "speaker": "长崎爽世",
+          "text": "太过分了",
+          "source": "BanG Dream! It's MyGO!!!!! 第8集"
+        },
+        {
+          "speaker_id": "tomori",
+          "speaker": "高松灯",
+          "text": "不是这样",
+          "source": "BanG Dream! It's MyGO!!!!! 第9集"
+        }
+      ]
+    },
+    {
+      "id": "not_important",
+      "title": "不重要？",
+      "lines": [
+        {
+          "speaker_id": "anon",
+          "speaker": "千早爱音",
+          "text": "这种事不重要吧",
+          "source": "BanG Dream! It's MyGO!!!!! 第10集"
+        },
+        {
+          "speaker_id": "soyo",
+          "speaker": "长崎爽世",
+          "text": "什么意思",
+          "source": "BanG Dream! It's MyGO!!!!! 第10集"
+        }
+      ]
+    },
+    {
+      "id": "rana_comment",
+      "title": "无趣",
+      "lines": [
+        {
+          "speaker_id": "rana",
+          "speaker": "要乐奈",
+          "text": "全是一些无趣的女人",
+          "source": "BanG Dream! It's MyGO!!!!! 第5集"
+        },
+        {
+          "speaker_id": "anon",
+          "speaker": "千早爱音",
+          "text": "不要吼我啦",
+          "source": "BanG Dream! It's MyGO!!!!! 第6集"
+        }
+      ]
+    },
+    {
+      "id": "umiri_interrupt",
+      "title": "打断",
+      "lines": [
+        {
+          "speaker_id": "umiri",
+          "speaker": "八幡海铃",
+          "text": "需要我待会再过来吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第9集"
+        },
+        {
+          "speaker_id": "taki",
+          "speaker": "椎名立希",
+          "text": "你这话是认真的吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第9集"
+        }
+      ]
+    },
+    {
+      "id": "nyamu_phone",
+      "title": "删除影片",
+      "lines": [
+        {
+          "speaker_id": "nyamu",
+          "speaker": "祐天寺喵梦",
+          "text": "喵梦：别这样啦",
+          "source": "BanG Dream! It's MyGO!!!!! 第13集"
+        },
+        {
+          "speaker_id": "sakiko",
+          "speaker": "丰川祥子",
+          "text": "可以请你删除刚才的影片吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第13集"
+        }
+      ]
+    },
+    {
+      "id": "mutsumi_join",
+      "title": "加入",
+      "lines": [
+        {
+          "speaker_id": "mutsumi",
+          "speaker": "若叶睦",
+          "text": "不是这样的",
+          "source": "BanG Dream! It's MyGO!!!!! 第8集"
+        },
+        {
+          "speaker_id": "sakiko",
+          "speaker": "丰川祥子",
+          "text": "一旦加入就无法回头了哦",
+          "source": "BanG Dream! It's MyGO!!!!! 第13集"
+        }
+      ]
+    },
+    {
+      "id": "uika_pudding",
+      "title": "布丁",
+      "lines": [
+        {
+          "speaker_id": "uika",
+          "speaker": "三角初华",
+          "text": "小祥 我买了布丁来",
+          "source": "BanG Dream! Ave Mujica 第5集"
+        },
+        {
+          "speaker_id": "sakiko",
+          "speaker": "丰川祥子",
+          "text": "可以请你别提起那件事吗",
+          "source": "BanG Dream! It's MyGO!!!!! 第8集"
+        }
+      ]
+    }
+  ]
+}

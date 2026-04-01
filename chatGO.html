@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BanGchat</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=ZCOOL+XiaoWei&family=Manrope:wght@300;400;600&display=swap');
+
+    :root {
+      --bg: #0b0b08;
+      --panel: rgba(17, 17, 14, 0.9);
+      --panel-strong: rgba(22, 21, 17, 0.95);
+      --line: rgba(217, 194, 118, 0.18);
+      --gold: #d8c076;
+      --gold-soft: #9f8b4c;
+      --text: #efe7d4;
+      --muted: #a59b86;
+      --accent: #c8ad5e;
+      --danger: #c46b6b;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --chat-tint: rgba(216, 192, 118, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 18% 18%, rgba(70, 110, 210, 0.4), transparent 45%),
+                  radial-gradient(circle at 78% 22%, rgba(210, 80, 90, 0.38), transparent 52%),
+                  radial-gradient(circle at 60% 80%, rgba(120, 60, 150, 0.3), transparent 58%),
+                  linear-gradient(135deg, #0a1836 0%, #4c0f1b 100%);
+      color: var(--text);
+      font-family: 'Manrope', 'ZCOOL XiaoWei', sans-serif;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.08"/></svg>');
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #app {
+      position: relative;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      height: 100vh;
+      gap: 0;
+      z-index: 1;
+    }
+
+    .sidebar {
+      padding: 24px 20px;
+      background: radial-gradient(circle at 18% 18%, rgba(70, 110, 210, 0.32), transparent 45%),
+                  radial-gradient(circle at 78% 22%, rgba(210, 80, 90, 0.3), transparent 52%),
+                  radial-gradient(circle at 60% 80%, rgba(120, 60, 150, 0.24), transparent 58%),
+                  linear-gradient(135deg, rgba(10, 24, 54, 0.96) 0%, rgba(76, 15, 27, 0.96) 100%);
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow: hidden;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(216, 192, 118, 0.8), rgba(120, 95, 30, 0.9));
+      display: grid;
+      place-items: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      color: #1c1a12;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .button {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .button:hover {
+      border-color: rgba(216, 192, 118, 0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, rgba(216, 192, 118, 0.9), rgba(143, 112, 40, 0.9));
+      color: #1a160c;
+      border: none;
+      font-weight: 600;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .timeline-chip {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(32, 29, 20, 0.65);
+      border: 1px solid var(--line);
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .timeline-chip small {
+      display: block;
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .character-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .character-btn {
+      padding: 8px 6px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(20, 18, 12, 0.8);
+      color: var(--text);
+      text-align: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .character-btn:hover {
+      border-color: rgba(216, 192, 118, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .character-btn.active {
+      background: rgba(216, 192, 118, 0.25);
+      border-color: rgba(216, 192, 118, 0.9);
+      color: #f7f0de;
+    }
+
+    .character-btn.disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .main {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .view {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+      padding: 32px 42px;
+    }
+
+    .view.active {
+      display: flex;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .timeline-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-card h3 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+    }
+
+    .timeline-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .timeline-card button {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
+    .empty-state {
+      background: var(--panel);
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      max-width: 640px;
+      box-shadow: var(--shadow);
+    }
+
+    .empty-state h2 {
+      margin: 0 0 8px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+    }
+
+    .empty-state p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    #chat-view {
+      padding: 0;
+    }
+
+    .chat-shell {
+      background:
+        radial-gradient(circle at 20% 15%, var(--chat-tint), transparent 55%),
+        radial-gradient(circle at 80% 85%, var(--chat-tint), transparent 60%),
+        rgba(12, 11, 9, 0.6);
+      border: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+      box-shadow: none;
+    }
+
+    .chat-header {
+      padding: 16px 20px;
+      background: rgba(20, 18, 12, 0.85);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .chat-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chat-title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .chat-title strong {
+      font-size: 18px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .chat-title span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+    }
+
+    .message {
+      max-width: 76%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      line-height: 1.6;
+      font-size: 14px;
+      border: 1px solid transparent;
+      background: rgba(26, 24, 18, 0.8);
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: rgba(216, 192, 118, 0.2);
+      border-color: rgba(216, 192, 118, 0.35);
+    }
+
+    .message.assistant {
+      align-self: flex-start;
+      background: rgba(18, 18, 14, 0.85);
+      border-color: rgba(216, 192, 118, 0.12);
+    }
+
+    .message-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 12px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      background: rgba(16, 15, 11, 0.9);
+    }
+
+    .chat-input textarea {
+      flex: 1;
+      min-height: 42px;
+      max-height: 120px;
+      resize: none;
+      border-radius: 14px;
+      border: 1px solid rgba(216, 192, 118, 0.2);
+      background: rgba(8, 8, 6, 0.9);
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: 'Manrope', sans-serif;
+      outline: none;
+    }
+
+    .chat-input button {
+      align-self: flex-end;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 5, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(420px, 90vw);
+      background: rgba(18, 16, 12, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .modal-card h2 {
+      margin: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+    }
+
+    .modal-card label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .modal-card input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(216, 192, 118, 0.2);
+      background: rgba(8, 8, 6, 0.9);
+      color: var(--text);
+      outline: none;
+    }
+
+    .modal-card .hint {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    .status {
+      font-size: 12px;
+      color: var(--muted);
+      min-height: 18px;
+    }
+
+    @media (max-width: 960px) {
+      #app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .view {
+        padding: 20px;
+      }
+
+      #chat-view {
+        padding: 0;
+      }
+
+      .character-list {
+        grid-template-columns: repeat(5, minmax(60px, 1fr));
+      }
+
+      .chat-shell {
+        min-height: 60vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div>
+          <h1>BanGchat</h1>
+          <span>MyGO / Ave Mujica</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">时间节点</div>
+        <div id="timeline-chip" class="timeline-chip">未选择
+          <small>请先在右侧选择时间线</small>
+        </div>
+        <button id="open-settings" class="button">API 设置</button>
+      </div>
+
+      <div class="section">
+        <div class="section-title">快捷操作</div>
+        <button id="new-chat" class="button">返回时间线</button>
+      </div>
+
+      <div class="section">
+        <div class="section-title">MyGO!!!!!</div>
+        <div id="mygo-list" class="character-list"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Ave Mujica</div>
+        <div id="avemujica-list" class="character-list"></div>
+      </div>
+
+      <div class="footer">
+        <span>History 保存本地</span>
+        <span id="status-dot">●</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section id="timeline-view" class="view active">
+        <div class="empty-state">
+          <h2>选择时间节点</h2>
+          <p>先决定故事处于哪个阶段，之后再选择角色进入对话。</p>
+        </div>
+        <div id="timeline-grid" class="timeline-grid"></div>
+      </section>
+
+      <section id="empty-view" class="view">
+        <div class="empty-state">
+          <h2>请选择角色</h2>
+          <p>时间节点已确定，从左侧选择任意成员进入聊天。</p>
+        </div>
+      </section>
+
+      <section id="chat-view" class="view">
+        <div class="chat-shell">
+          <div class="chat-header">
+            <div class="chat-title">
+              <strong id="chat-title">未选择角色</strong>
+              <span id="chat-subtitle">请先选择时间节点与角色</span>
+            </div>
+            <div class="chat-actions">
+              <button id="rollback-chat" class="button">回退一步</button>
+              <button id="regen-chat" class="button">重新生成</button>
+              <button id="clear-chat" class="button">清空记录</button>
+            </div>
+          </div>
+          <div id="chat-messages" class="chat-messages"></div>
+          <div class="chat-input">
+            <textarea id="message-input" placeholder="输入消息，Enter 发送，Shift+Enter 换行"></textarea>
+            <button id="send-btn" class="button primary">发送</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="api-modal" class="modal">
+    <div class="modal-card">
+      <h2>连接 AI</h2>
+      <div>
+        <label>API 地址</label>
+        <input id="api-url" placeholder="https://api.openai.com/v1" />
+      </div>
+      <div>
+        <label>API Key</label>
+        <input id="api-key" type="password" placeholder="sk-..." />
+      </div>
+      <div>
+        <label>模型（可选）</label>
+        <input id="api-model" placeholder="gpt-4o-mini" />
+      </div>
+      <div class="hint">API 需兼容 OpenAI Chat Completions：/v1/chat/completions</div>
+      <div class="status" id="api-status"></div>
+      <div class="modal-actions">
+        <button id="close-modal" class="button">取消</button>
+        <button id="save-settings" class="button primary">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      data: {
+        characters: [],
+        bands: [],
+        timelines: [],
+        world: {}
+      },
+      settings: {
+        apiUrl: '',
+        apiKey: '',
+        model: ''
+      },
+      timelineId: null,
+      characterId: null,
+      history: [],
+      isStreaming: false,
+      abortController: null
+    };
+
+    const HAIR_COLORS = {
+      tomori: '#2d2f3a',
+      anon: '#c97234',
+      rana: '#d6c27a',
+      soyo: '#a88663',
+      taki: '#1f2024',
+      sakiko: '#a7acb7',
+      mutsumi: '#3b2b59',
+      umiri: '#283a66',
+      uika: '#d59ab2',
+      nyamu: '#d8b45d'
+    };
+
+    const DEFAULT_CHAT_TINT = 'rgba(216, 192, 118, 0.22)';
+
+    const els = {
+      timelineView: document.getElementById('timeline-view'),
+      emptyView: document.getElementById('empty-view'),
+      chatView: document.getElementById('chat-view'),
+      timelineGrid: document.getElementById('timeline-grid'),
+      timelineChip: document.getElementById('timeline-chip'),
+      mygoList: document.getElementById('mygo-list'),
+      avemujicaList: document.getElementById('avemujica-list'),
+      chatTitle: document.getElementById('chat-title'),
+      chatSubtitle: document.getElementById('chat-subtitle'),
+      chatMessages: document.getElementById('chat-messages'),
+      messageInput: document.getElementById('message-input'),
+      sendBtn: document.getElementById('send-btn'),
+      newChat: document.getElementById('new-chat'),
+      clearChat: document.getElementById('clear-chat'),
+      rollbackChat: document.getElementById('rollback-chat'),
+      regenChat: document.getElementById('regen-chat'),
+      apiModal: document.getElementById('api-modal'),
+      apiUrl: document.getElementById('api-url'),
+      apiKey: document.getElementById('api-key'),
+      apiModel: document.getElementById('api-model'),
+      apiStatus: document.getElementById('api-status'),
+      openSettings: document.getElementById('open-settings'),
+      closeModal: document.getElementById('close-modal'),
+      saveSettings: document.getElementById('save-settings')
+    };
+
+    function hexToRgb(hex) {
+      const cleaned = hex.replace('#', '');
+      const value = cleaned.length === 3
+        ? cleaned.split('').map((c) => c + c).join('')
+        : cleaned;
+      const num = parseInt(value, 16);
+      return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: num & 255
+      };
+    }
+
+    function makeTint(hex) {
+      const { r, g, b } = hexToRgb(hex);
+      const mix = (c) => Math.round(c + (255 - c) * 0.62);
+      const rr = mix(r);
+      const gg = mix(g);
+      const bb = mix(b);
+      return `rgba(${rr}, ${gg}, ${bb}, 0.35)`;
+    }
+
+    function applyChatTint(characterId) {
+      if (!characterId || !HAIR_COLORS[characterId]) {
+        document.documentElement.style.setProperty('--chat-tint', DEFAULT_CHAT_TINT);
+        return;
+      }
+      const tint = makeTint(HAIR_COLORS[characterId]);
+      document.documentElement.style.setProperty('--chat-tint', tint);
+    }
+
+    function loadSettings() {
+      const raw = localStorage.getItem('bangchat_settings');
+      if (!raw) return;
+      try {
+        state.settings = { ...state.settings, ...JSON.parse(raw) };
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+
+    function saveSettings() {
+      localStorage.setItem('bangchat_settings', JSON.stringify(state.settings));
+    }
+
+    function showModal() {
+      els.apiUrl.value = state.settings.apiUrl || '';
+      els.apiKey.value = state.settings.apiKey || '';
+      els.apiModel.value = state.settings.model || '';
+      els.apiStatus.textContent = '';
+      els.apiModal.classList.add('active');
+    }
+
+    function hideModal() {
+      els.apiModal.classList.remove('active');
+    }
+
+    async function fetchJson(path, fallbackId) {
+      try {
+        const res = await fetch(path);
+        if (!res.ok) throw new Error('load failed');
+        return await res.json();
+      } catch (err) {
+        const fallback = document.getElementById(fallbackId);
+        if (fallback) {
+          return JSON.parse(fallback.textContent);
+        }
+        throw err;
+      }
+    }
+
+    async function loadData() {
+      const [characters, timelines, world] = await Promise.all([
+        fetchJson('character.json', 'character-data'),
+        fetchJson('timeline.json', 'timeline-data'),
+        fetchJson('world.json', 'world-data')
+      ]);
+
+      state.data.characters = characters.characters || [];
+      state.data.bands = characters.bands || [];
+      state.data.timelines = timelines.nodes || [];
+      state.data.world = world || {};
+
+      renderTimelineCards();
+      renderCharacterLists();
+      restoreState();
+      updateUI();
+    }
+
+    function restoreState() {
+      const raw = localStorage.getItem('bangchat_state');
+      if (!raw) return;
+      try {
+        const stored = JSON.parse(raw);
+        state.timelineId = stored.timelineId || null;
+        state.characterId = stored.characterId || null;
+      } catch (err) {
+        console.warn(err);
+      }
+    }
+
+    function persistState() {
+      localStorage.setItem('bangchat_state', JSON.stringify({
+        timelineId: state.timelineId,
+        characterId: state.characterId
+      }));
+    }
+
+    function renderTimelineCards() {
+      els.timelineGrid.innerHTML = '';
+      state.data.timelines.forEach((node) => {
+        const card = document.createElement('div');
+        card.className = 'timeline-card';
+        card.innerHTML = `
+          <h3>${node.title}</h3>
+          <p>${node.summary}</p>
+          <button class="button primary" data-id="${node.id}">进入该节点</button>
+        `;
+        card.querySelector('button').addEventListener('click', () => {
+          selectTimeline(node.id);
+        });
+        els.timelineGrid.appendChild(card);
+      });
+    }
+
+    function renderCharacterLists() {
+      const byId = Object.fromEntries(state.data.characters.map((c) => [c.id, c]));
+      const mygo = state.data.bands.find((b) => b.id === 'mygo');
+      const avemujica = state.data.bands.find((b) => b.id === 'avemujica');
+
+      renderCharacterGroup(els.mygoList, mygo?.members || [], byId);
+      renderCharacterGroup(els.avemujicaList, avemujica?.members || [], byId);
+    }
+
+    function renderCharacterGroup(container, members, byId) {
+      container.innerHTML = '';
+      members.forEach((id) => {
+        const character = byId[id];
+        const btn = document.createElement('button');
+        btn.className = 'character-btn';
+        btn.textContent = character?.name_cn || id;
+        btn.dataset.id = id;
+        btn.addEventListener('click', () => {
+          if (!state.timelineId) return;
+          selectCharacter(id);
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function selectTimeline(id) {
+      state.timelineId = id;
+      state.characterId = null;
+      persistState();
+      updateUI();
+    }
+
+    function selectCharacter(id) {
+      state.characterId = id;
+      persistState();
+      loadHistory();
+      updateUI();
+      scrollToBottom();
+    }
+
+    function returnToTimeline() {
+      state.timelineId = null;
+      state.characterId = null;
+      persistState();
+      updateUI();
+    }
+
+    function updateUI() {
+      const timeline = state.data.timelines.find((t) => t.id === state.timelineId);
+      const character = state.data.characters.find((c) => c.id === state.characterId);
+
+      if (!timeline) {
+        els.timelineChip.innerHTML = '未选择<small>请先在右侧选择时间线</small>';
+      } else {
+        els.timelineChip.innerHTML = `${timeline.title}<small>${timeline.summary}</small>`;
+      }
+
+      document.querySelectorAll('.character-btn').forEach((btn) => {
+        btn.classList.toggle('disabled', !state.timelineId);
+        btn.classList.toggle('active', btn.dataset.id === state.characterId);
+      });
+
+      if (!state.timelineId) {
+        showView('timeline');
+      } else if (!state.characterId) {
+        showView('empty');
+      } else {
+        showView('chat');
+      }
+
+      if (character && timeline) {
+        els.chatTitle.textContent = character.name_cn;
+        els.chatSubtitle.textContent = timeline.title;
+      }
+
+      applyChatTint(character ? character.id : null);
+    }
+
+    function showView(name) {
+      els.timelineView.classList.toggle('active', name === 'timeline');
+      els.emptyView.classList.toggle('active', name === 'empty');
+      els.chatView.classList.toggle('active', name === 'chat');
+    }
+
+    function getHistoryKey() {
+      if (!state.timelineId || !state.characterId) return null;
+      return `bangchat_history_${state.timelineId}_${state.characterId}`;
+    }
+
+    function loadHistory() {
+      const key = getHistoryKey();
+      if (!key) return;
+      const raw = localStorage.getItem(key);
+      if (!raw) {
+        state.history = [];
+      } else {
+        try {
+          state.history = JSON.parse(raw);
+        } catch (err) {
+          state.history = [];
+        }
+      }
+      renderMessages();
+    }
+
+    function saveHistory() {
+      const key = getHistoryKey();
+      if (!key) return;
+      localStorage.setItem(key, JSON.stringify(state.history));
+    }
+
+    function renderMessages() {
+      els.chatMessages.innerHTML = '';
+      state.history.forEach((msg) => {
+        appendMessage(msg);
+      });
+    }
+
+    function appendMessage(msg) {
+      const bubble = document.createElement('div');
+      bubble.className = `message ${msg.role}`;
+      const meta = document.createElement('div');
+      meta.className = 'message-meta';
+      meta.textContent = msg.role === 'user' ? '你' : '角色';
+      const content = document.createElement('div');
+      content.innerHTML = formatText(msg.content);
+      bubble.appendChild(meta);
+      bubble.appendChild(content);
+      els.chatMessages.appendChild(bubble);
+      return content;
+    }
+
+    function formatText(text) {
+      const escaped = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      return escaped.replace(/\n/g, '<br/>');
+    }
+
+    function scrollToBottom() {
+      requestAnimationFrame(() => {
+        els.chatMessages.scrollTop = els.chatMessages.scrollHeight;
+      });
+    }
+
+    function buildSystemPrompt(character, timeline) {
+      const world = state.data.world || {};
+      const timelineNote = timeline.character_states?.[character.id] || '';
+      return `你正在扮演《BanG Dream! It's MyGO!!!!! / Ave Mujica》中的角色「${character.name_cn}」。\n` +
+        `时间节点：${timeline.title}\n` +
+        `世界观：${world.setting || ''}\n` +
+        `角色设定：${character.summary || ''}\n` +
+        `当前状态：${timelineNote}\n` +
+        `要求：用中文回答，保持角色口吻，不跳出角色，不剧透超出该时间节点的剧情。`;
+    }
+
+    function resolveEndpoint(base) {
+      let url = (base || '').trim();
+      if (!url) return '';
+      url = url.replace(/\/$/, '');
+      if (url.endsWith('/v1/chat/completions')) return url;
+      return `${url}/v1/chat/completions`;
+    }
+
+    async function streamCompletion(messages, onDelta, signal) {
+      const endpoint = resolveEndpoint(state.settings.apiUrl);
+      if (!endpoint) throw new Error('API 地址为空');
+      const body = {
+        model: state.settings.model || 'gpt-4o-mini',
+        messages,
+        stream: true,
+        temperature: 0.8
+      };
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      if (state.settings.apiKey) {
+        headers['Authorization'] = `Bearer ${state.settings.apiKey}`;
+      }
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(body),
+        signal
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || '请求失败');
+      }
+
+      if (!res.body) {
+        const data = await res.json();
+        const content = data.choices?.[0]?.message?.content || '';
+        onDelta(content, true);
+        return;
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split(/\r?\n/);
+        buffer = lines.pop() || '';
+        for (const line of lines) {
+          if (!line.startsWith('data:')) continue;
+          const payload = line.slice(5).trim();
+          if (!payload) continue;
+          if (payload === '[DONE]') return;
+          try {
+            const json = JSON.parse(payload);
+            const delta = json.choices?.[0]?.delta?.content || json.choices?.[0]?.text || '';
+            if (delta) onDelta(delta, false);
+          } catch (err) {
+            console.warn(err);
+          }
+        }
+      }
+    }
+
+    async function handleSend() {
+      if (!state.timelineId || !state.characterId) return;
+      const content = els.messageInput.value.trim();
+      if (!content) return;
+
+      const character = state.data.characters.find((c) => c.id === state.characterId);
+      const timeline = state.data.timelines.find((t) => t.id === state.timelineId);
+      if (!character || !timeline) return;
+
+      const userMessage = { role: 'user', content };
+      state.history.push(userMessage);
+      appendMessage(userMessage);
+      saveHistory();
+      els.messageInput.value = '';
+      scrollToBottom();
+
+      await generateAssistantResponse();
+    }
+
+    function clearChat() {
+      if (!state.timelineId || !state.characterId) return;
+      abortStreaming();
+      state.history = [];
+      saveHistory();
+      renderMessages();
+    }
+
+    function abortStreaming() {
+      if (state.abortController) {
+        state.abortController.abort();
+      }
+      state.isStreaming = false;
+      state.abortController = null;
+    }
+
+    function getLastUserIndex() {
+      for (let i = state.history.length - 1; i >= 0; i -= 1) {
+        if (state.history[i].role === 'user') return i;
+      }
+      return -1;
+    }
+
+    function rollbackLastExchange() {
+      if (!state.timelineId || !state.characterId) return;
+      abortStreaming();
+      const lastUserIndex = getLastUserIndex();
+      if (lastUserIndex === -1) return;
+      state.history = state.history.slice(0, lastUserIndex);
+      saveHistory();
+      renderMessages();
+      scrollToBottom();
+    }
+
+    async function regenerateLast() {
+      if (!state.timelineId || !state.characterId) return;
+      abortStreaming();
+      const lastUserIndex = getLastUserIndex();
+      if (lastUserIndex === -1) return;
+      state.history = state.history.slice(0, lastUserIndex + 1);
+      renderMessages();
+      saveHistory();
+      scrollToBottom();
+      await generateAssistantResponse();
+    }
+
+    async function generateAssistantResponse() {
+      const character = state.data.characters.find((c) => c.id === state.characterId);
+      const timeline = state.data.timelines.find((t) => t.id === state.timelineId);
+      if (!character || !timeline) return;
+
+      const assistantMessage = { role: 'assistant', content: '' };
+      state.history.push(assistantMessage);
+      const assistantContentEl = appendMessage(assistantMessage);
+      scrollToBottom();
+
+      const systemPrompt = buildSystemPrompt(character, timeline);
+      const messages = [
+        { role: 'system', content: systemPrompt },
+        ...state.history.filter((msg) => msg.role !== 'system').map((msg) => ({
+          role: msg.role,
+          content: msg.content
+        }))
+      ];
+
+      state.isStreaming = true;
+      state.abortController = new AbortController();
+
+      try {
+        await streamCompletion(messages, (delta) => {
+          assistantMessage.content += delta;
+          assistantContentEl.innerHTML = formatText(assistantMessage.content);
+          scrollToBottom();
+        }, state.abortController.signal);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          assistantMessage.content += `\n[请求失败] ${err.message}`;
+          assistantContentEl.innerHTML = formatText(assistantMessage.content);
+        }
+      } finally {
+        state.isStreaming = false;
+        state.abortController = null;
+        saveHistory();
+      }
+    }
+
+    els.sendBtn.addEventListener('click', handleSend);
+    els.messageInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        handleSend();
+      }
+    });
+    els.newChat.addEventListener('click', returnToTimeline);
+    els.clearChat.addEventListener('click', clearChat);
+    els.rollbackChat.addEventListener('click', rollbackLastExchange);
+    els.regenChat.addEventListener('click', regenerateLast);
+
+    els.openSettings.addEventListener('click', showModal);
+    els.closeModal.addEventListener('click', hideModal);
+    els.saveSettings.addEventListener('click', () => {
+      const apiUrl = els.apiUrl.value.trim();
+      const apiKey = els.apiKey.value.trim();
+      if (!apiUrl || !apiKey) {
+        els.apiStatus.textContent = '请填写 API 地址与 Key';
+        els.apiStatus.style.color = 'var(--danger)';
+        return;
+      }
+      state.settings.apiUrl = apiUrl;
+      state.settings.apiKey = apiKey;
+      state.settings.model = els.apiModel.value.trim();
+      saveSettings();
+      hideModal();
+    });
+
+    window.addEventListener('beforeunload', saveHistory);
+
+    loadSettings();
+    loadData().catch((err) => {
+      console.error(err);
+    });
+
+    if (!state.settings.apiUrl || !state.settings.apiKey) {
+      showModal();
+    }
+  </script>
+</body>
+</html>

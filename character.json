@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-01",
+  "bands": [
+    {
+      "id": "mygo",
+      "name": "MyGO!!!!!",
+      "members": ["tomori", "anon", "rana", "soyo", "taki"]
+    },
+    {
+      "id": "avemujica",
+      "name": "Ave Mujica",
+      "members": ["sakiko", "mutsumi", "umiri", "uika", "nyamu"]
+    }
+  ],
+  "characters": [
+    {
+      "id": "tomori",
+      "name_cn": "高松灯",
+      "name_jp": "高松 燈",
+      "name_en": "Tomori Takamatsu",
+      "band": "MyGO!!!!!",
+      "school": "羽丘女子学园",
+      "role": "主唱",
+      "instrument": "人声",
+      "stage_name": null,
+      "summary": "羽丘女子学园一年级。性格内向、与人沟通笨拙，但很珍惜同伴。曾是CRYCHIC主唱，解散后更封闭，后来加入MyGO!!!!!。喜欢收集小物件。",
+      "personality": ["内向", "敏感", "认真", "重视承诺"],
+      "tags": ["CRYCHIC前成员", "写词", "收集癖"]
+    },
+    {
+      "id": "anon",
+      "name_cn": "千早爱音",
+      "name_jp": "千早 愛音",
+      "name_en": "Anon Chihaya",
+      "band": "MyGO!!!!!",
+      "school": "羽丘女子学园",
+      "role": "节奏吉他",
+      "instrument": "吉他",
+      "stage_name": null,
+      "summary": "羽丘女子学园一年级，转学归国。外向主动，为了融入班级发起组乐队并担任节奏吉他，后来逐渐把心思放在真正的伙伴与音乐上。",
+      "personality": ["外向", "主动", "爱表现", "重视伙伴"],
+      "tags": ["转学生", "乐队发起人"]
+    },
+    {
+      "id": "rana",
+      "name_cn": "要乐奈",
+      "name_jp": "要 楽奈",
+      "name_en": "Rana Kaname",
+      "band": "MyGO!!!!!",
+      "school": "花咲川女子学园（中学部）",
+      "role": "主音吉他",
+      "instrument": "吉他",
+      "stage_name": null,
+      "summary": "花咲川女子学园中学三年级。性格随性直率，常出没于live house RiNG，吉他技术出众，后来加入MyGO!!!!!担任主音吉他。",
+      "personality": ["随性", "直率", "好奇", "行动派"],
+      "tags": ["RiNG常客", "技术派"]
+    },
+    {
+      "id": "soyo",
+      "name_cn": "长崎素世",
+      "name_jp": "長崎 そよ",
+      "name_en": "Soyo Nagasaki",
+      "band": "MyGO!!!!!",
+      "school": "月之森女子学园",
+      "role": "贝斯",
+      "instrument": "贝斯",
+      "stage_name": null,
+      "summary": "月之森女子学园一年级，原CRYCHIC贝斯手。外表温柔、有礼，但对旧乐队有强烈执念，在反复拉扯后加入MyGO!!!!!并逐渐学会坦诚。",
+      "personality": ["温柔", "克制", "责任感强", "内心敏感"],
+      "tags": ["CRYCHIC前成员", "外柔内紧"]
+    },
+    {
+      "id": "taki",
+      "name_cn": "椎名立希",
+      "name_jp": "椎名 立希",
+      "name_en": "Taki Shiina",
+      "band": "MyGO!!!!!",
+      "school": "花咲川女子学园",
+      "role": "鼓手",
+      "instrument": "鼓",
+      "stage_name": null,
+      "summary": "花咲川女子学园一年级，在RiNG打工。性格孤僻直率、对Tomori很保护。原CRYCHIC鼓手，后来加入MyGO!!!!!担任鼓手。",
+      "personality": ["直率", "强势", "保护欲强", "行动派"],
+      "tags": ["CRYCHIC前成员", "RiNG打工"]
+    },
+    {
+      "id": "sakiko",
+      "name_cn": "丰川祥子",
+      "name_jp": "豊川 祥子",
+      "name_en": "Sakiko Togawa",
+      "band": "Ave Mujica",
+      "school": "羽丘女子学园",
+      "role": "键盘 / 领队",
+      "instrument": "键盘",
+      "stage_name": "Oblivionis",
+      "summary": "羽丘女子学园一年级，钢琴手，原CRYCHIC键盘。退出后与旧友疏远，后来组建Ave Mujica并担任领队，舞台名Oblivionis。",
+      "personality": ["克制", "决断", "情感复杂", "自尊强"],
+      "tags": ["CRYCHIC前成员", "Ave Mujica队长"]
+    },
+    {
+      "id": "mutsumi",
+      "name_cn": "若叶睦",
+      "name_jp": "若葉 睦",
+      "name_en": "Mutsumi Wakaba",
+      "band": "Ave Mujica",
+      "school": "月之森女子学园",
+      "role": "吉他",
+      "instrument": "吉他",
+      "stage_name": "Mortis",
+      "summary": "月之森女子学园学生，原CRYCHIC吉他手。寡言、不擅表达，常在朋友之间做调停。加入Ave Mujica，舞台名Mortis。",
+      "personality": ["沉静", "内敛", "敏感", "重情义"],
+      "tags": ["CRYCHIC前成员", "低存在感"]
+    },
+    {
+      "id": "umiri",
+      "name_cn": "八幡海铃",
+      "name_jp": "八幡 海鈴",
+      "name_en": "Umiri Yahata",
+      "band": "Ave Mujica",
+      "school": "花咲川女子学园",
+      "role": "贝斯",
+      "instrument": "贝斯",
+      "stage_name": "Timoris",
+      "summary": "花咲川女子学园一年级，贝斯手，活跃于多支乐队，与Taki相熟。加入Ave Mujica，舞台名Timoris。",
+      "personality": ["务实", "冷静", "善于协作"],
+      "tags": ["多队兼顾", "技术稳定"]
+    },
+    {
+      "id": "uika",
+      "name_cn": "三角初华",
+      "name_jp": "三角 初華",
+      "name_en": "Uika Misumi",
+      "band": "Ave Mujica",
+      "school": "花咲川女子学园",
+      "role": "主唱 / 吉他",
+      "instrument": "吉他",
+      "stage_name": "Doloris",
+      "summary": "花咲川女子学园一年级，Taki与Umiri的同班同学。偶像组合sumimi的主唱兼吉他手，与Sakiko是青梅竹马。加入Ave Mujica，舞台名Doloris。",
+      "personality": ["温和", "体贴", "情感细腻"],
+      "tags": ["sumimi成员", "青梅竹马"]
+    },
+    {
+      "id": "nyamu",
+      "name_cn": "祐天寺喵梦",
+      "name_jp": "祐天寺 にゃむ",
+      "name_en": "Nyamu Yutenji",
+      "band": "Ave Mujica",
+      "school": "未知",
+      "role": "鼓手",
+      "instrument": "鼓",
+      "stage_name": "Amoris",
+      "summary": "网络美妆博主，被Anon关注，鼓技出色。加入Ave Mujica，舞台名Amoris。",
+      "personality": ["外向", "精于表现", "目标感强"],
+      "tags": ["网络影响者", "舞台感强"]
+    }
+  ]
+}

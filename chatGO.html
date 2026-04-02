@@ -339,6 +339,8 @@
       flex-direction: column;
       gap: 12px;
       scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
     }
 
     .message {
@@ -463,8 +465,14 @@
     }
 
     @media (max-width: 960px) {
+      body {
+        overflow-y: auto;
+      }
+
       #app {
         grid-template-columns: 1fr;
+        height: auto;
+        min-height: 100vh;
       }
 
       .sidebar {
@@ -473,14 +481,20 @@
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--line);
+        overflow: visible;
       }
 
       .view {
-        padding: 20px;
+        padding: 18px;
       }
 
       #chat-view {
         padding: 0;
+      }
+
+      .main {
+        height: auto;
+        min-height: 60vh;
       }
 
       .character-list {
@@ -488,7 +502,7 @@
       }
 
       .chat-shell {
-        min-height: 60vh;
+        min-height: 70vh;
       }
     }
   </style>
@@ -656,6 +670,13 @@
       closeModal: document.getElementById('close-modal'),
       saveSettings: document.getElementById('save-settings')
     };
+
+    function isLatin1(value) {
+      for (let i = 0; i < value.length; i += 1) {
+        if (value.charCodeAt(i) > 255) return false;
+      }
+      return true;
+    }
 
     function hexToRgb(hex) {
       const cleaned = hex.replace('#', '');
@@ -960,6 +981,9 @@
         'Content-Type': 'application/json'
       };
       if (state.settings.apiKey) {
+        if (!isLatin1(state.settings.apiKey)) {
+          throw new Error('API Key 只能包含英文/数字/符号，请检查是否输入了中文或空格。');
+        }
         headers['Authorization'] = `Bearer ${state.settings.apiKey}`;
       }
 
@@ -1129,8 +1153,13 @@
     els.saveSettings.addEventListener('click', () => {
       const apiUrl = els.apiUrl.value.trim();
       const apiKey = els.apiKey.value.trim();
-      if (!apiUrl || !apiKey) {
-        els.apiStatus.textContent = '请填写 API 地址与 Key';
+      if (!apiUrl) {
+        els.apiStatus.textContent = '请填写 API 地址';
+        els.apiStatus.style.color = 'var(--danger)';
+        return;
+      }
+      if (apiKey && !isLatin1(apiKey)) {
+        els.apiStatus.textContent = 'API Key 只能包含英文/数字/符号';
         els.apiStatus.style.color = 'var(--danger)';
         return;
       }

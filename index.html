@@ -8,18 +8,21 @@
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=ZCOOL+XiaoWei&family=Manrope:wght@300;400;600&display=swap');
 
     :root {
-      --bg: #0b0b08;
-      --panel: rgba(17, 17, 14, 0.9);
-      --panel-strong: rgba(22, 21, 17, 0.95);
-      --line: rgba(217, 194, 118, 0.18);
-      --gold: #d8c076;
-      --gold-soft: #9f8b4c;
-      --text: #efe7d4;
-      --muted: #a59b86;
-      --accent: #c8ad5e;
-      --danger: #c46b6b;
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-      --chat-tint: rgba(216, 192, 118, 0.22);
+      /* ===== 深色奢华风格配色方案 ===== */
+      --bg: #0b0b08;                    /* 页面背景（深黑褐） */
+      --panel: rgba(17, 17, 14, 0.9);   /* 面板背景（半透明黑褐） */
+      --panel-strong: rgba(22, 21, 17, 0.95); /* 强调面板 */
+      --line: rgba(217, 194, 118, 0.18); /* 边框分割线（金色半透明） */
+      --gold: #d8c076;                  /* 主金色 */
+      --gold-soft: #9f8b4c;             /* 柔和金色 */
+      --text: #efe7d4;                  /* 主文字色（米白） */
+      --muted: #a59b86;                 /* 辅助文字（灰褐） */
+      --accent: #c8ad5e;                /* 强调色 */
+      --danger: #c46b6b;                /* 危险/错误色 */
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45); /* 阴影 */
+      --chat-tint: rgba(216, 192, 118, 0.22);     /* 聊天区域氛围染色 */
+
+      /* ===== 字体栈 ===== */
       --font-body: 'Noto Sans SC', 'Noto Sans CJK SC', 'Source Han Sans SC', 'PingFang SC',
         'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Heiti SC', 'SimHei', 'Noto Sans',
         'Manrope', 'Helvetica Neue', Arial, sans-serif;
@@ -34,16 +37,18 @@
     body {
       margin: 0;
       min-height: 100vh;
+      /* 三层径向渐变 + 一层线性渐变，营造星空/舞台氛围 */
       background: radial-gradient(circle at 18% 18%, rgba(70, 110, 210, 0.4), transparent 45%),
                   radial-gradient(circle at 78% 22%, rgba(210, 80, 90, 0.38), transparent 52%),
                   radial-gradient(circle at 60% 80%, rgba(120, 60, 150, 0.3), transparent 58%),
                   linear-gradient(135deg, #0a1836 0%, #4c0f1b 100%);
       color: var(--text);
       font-family: var(--font-body);
-      overflow: hidden;
+      overflow: hidden;                /* 禁止页面滚动，滚动交给内部容器 */
     }
 
     body::before {
+      /* SVG 噪点纹理叠加层，增加质感 */
       content: '';
       position: fixed;
       inset: 0;
@@ -56,12 +61,13 @@
     #app {
       position: relative;
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 300px 1fr; /* 左侧边栏 300px，右侧主区域自适应 */
       height: 100vh;
       gap: 0;
       z-index: 1;
     }
 
+    /* ===== 左侧边栏：品牌、时间线、角色列表 ===== */
     .sidebar {
       padding: 24px 20px;
       background: radial-gradient(circle at 18% 18%, rgba(70, 110, 210, 0.32), transparent 45%),
@@ -208,6 +214,7 @@
       color: var(--muted);
     }
 
+    /* ===== 主区域：时间线选择 / 空状态 / 聊天视图 ===== */
     .main {
       position: relative;
       padding: 0;
@@ -219,14 +226,14 @@
 
     .view {
       flex: 1;
-      display: none;
+      display: none;           /* 默认隐藏，通过 .active 切换 */
       flex-direction: column;
       gap: 24px;
       padding: 32px 42px;
     }
 
     .view.active {
-      display: flex;
+      display: flex;           /* 激活的视图才显示 */
     }
 
     .timeline-grid {
@@ -291,6 +298,7 @@
       min-height: 0;
     }
 
+    /* ===== 聊天面板 ===== */
     .chat-shell {
       background:
         radial-gradient(circle at 20% 15%, var(--chat-tint), transparent 55%),
@@ -302,10 +310,11 @@
       flex-direction: column;
       overflow: hidden;
       flex: 1;
-      min-height: 0;
+      min-height: 0;           /* flex 子项溢出必需 */
       box-shadow: none;
     }
 
+    /* 聊天顶部栏：角色名 + 操作按钮 */
     .chat-header {
       padding: 16px 20px;
       background: rgba(20, 18, 12, 0.85);
@@ -338,21 +347,23 @@
       color: var(--muted);
     }
 
+    /* ===== 消息列表（可滚动） ===== */
     .chat-messages {
       flex: 1;
-      overflow-y: auto;
+      overflow-y: auto;          /* 仅纵向滚动 */
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      scroll-behavior: smooth;
+      scroll-behavior: smooth;   /* 滚动动画 */
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-y;
-      min-height: 0;
+      touch-action: pan-y;       /* 触屏只允许纵向滑动 */
+      min-height: 0;             /* flex 子项溢出必需 */
     }
 
+    /* 单条消息气泡 */
     .message {
-      max-width: 76%;
+      max-width: 76%;            /* 气泡最大宽度，留出对话感 */
       padding: 12px 14px;
       border-radius: 16px;
       line-height: 1.6;
@@ -361,12 +372,14 @@
       background: rgba(26, 24, 18, 0.8);
     }
 
+    /* 用户消息：右对齐 + 金色边框 */
     .message.user {
       align-self: flex-end;
       background: rgba(216, 192, 118, 0.2);
       border-color: rgba(216, 192, 118, 0.35);
     }
 
+    /* AI 消息：左对齐 + 半透明边框 */
     .message.assistant {
       align-self: flex-start;
       background: rgba(18, 18, 14, 0.85);
@@ -379,11 +392,12 @@
       margin-bottom: 6px;
     }
 
+    /* ===== 底部输入区 ===== */
     .chat-input {
       display: flex;
       gap: 12px;
       padding: 16px 20px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--line);  /* 与消息区域的分隔线 */
       background: rgba(16, 15, 11, 0.9);
     }
 
@@ -405,15 +419,16 @@
       align-self: flex-end;
     }
 
+    /* ===== 模态弹窗（API 设置） ===== */
     .modal {
       position: fixed;
       inset: 0;
       background: rgba(6, 6, 5, 0.7);
-      display: none;
+      display: none;                  /* 默认隐藏，.active 时显示 */
       align-items: center;
       justify-content: center;
-      z-index: 10;
-      backdrop-filter: blur(6px);
+      z-index: 10;                    /* 置于最顶层 */
+      backdrop-filter: blur(6px);     /* 背景模糊效果 */
     }
 
     .modal.active {
@@ -481,19 +496,20 @@
       min-height: 18px;
     }
 
+    /* ===== 响应式：平板/手机 ≤ 960px ===== */
     @media (max-width: 960px) {
       body {
-        overflow-y: auto;
+        overflow-y: auto;            /* 小屏允许页面滚动 */
       }
 
       #app {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* 取消双栏，改为单列 */
         height: auto;
         min-height: 100vh;
       }
 
       .sidebar {
-        flex-direction: row;
+        flex-direction: row;         /* 侧边栏变为横向布局 */
         flex-wrap: wrap;
         height: auto;
         border-right: none;
@@ -523,17 +539,18 @@
       }
     }
 
+    /* ===== 小屏聊天模式：隐藏侧边栏，全屏聊天 ===== */
     @media (max-width: 960px) {
       body.is-chat {
-        overflow: hidden;
+        overflow: hidden;           /* 聊天时禁止背景滚动 */
       }
 
       body.is-chat #app {
-        height: 100svh;
+        height: 100svh;            /* 使用安全视口高度 */
       }
 
       body.is-chat .sidebar {
-        display: none;
+        display: none;             /* 聊天时隐藏侧边栏 */
       }
 
       body.is-chat .main {
@@ -565,8 +582,11 @@
   </style>
 </head>
 <body>
+  <!-- ========== 应用根容器 ========== -->
   <div id="app">
+    <!-- ===== 左侧边栏 ===== -->
     <aside class="sidebar">
+      <!-- 品牌标识 -->
       <div class="brand">
         <div>
           <h1>BanGchat</h1>
@@ -574,6 +594,7 @@
         </div>
       </div>
 
+      <!-- 时间线 + API 设置 -->
       <div class="section">
         <div class="section-title">时间节点</div>
         <div id="timeline-chip" class="timeline-chip">未选择
@@ -582,28 +603,34 @@
         <button id="open-settings" class="button">API 设置</button>
       </div>
 
+      <!-- 快捷操作 -->
       <div class="section">
         <div class="section-title">快捷操作</div>
         <button id="new-chat" class="button">返回时间线</button>
       </div>
 
+      <!-- MyGO!!!!! 乐队角色 -->
       <div class="section">
         <div class="section-title">MyGO!!!!!</div>
         <div id="mygo-list" class="character-list"></div>
       </div>
 
+      <!-- Ave Mujica 乐队角色 -->
       <div class="section">
         <div class="section-title">Ave Mujica</div>
         <div id="avemujica-list" class="character-list"></div>
       </div>
 
+      <!-- 底栏：存储状态 + 连接指示器 -->
       <div class="footer">
         <span>History 保存本地</span>
         <span id="status-dot">●</span>
       </div>
     </aside>
 
+    <!-- ===== 主内容区域 ===== -->
     <main class="main">
+      <!-- 视图1：时间线选择 -->
       <section id="timeline-view" class="view active">
         <div class="empty-state">
           <h2>选择时间节点</h2>
@@ -612,6 +639,7 @@
         <div id="timeline-grid" class="timeline-grid"></div>
       </section>
 
+      <!-- 视图2：已选时间线但未选角色时的提示 -->
       <section id="empty-view" class="view">
         <div class="empty-state">
           <h2>请选择角色</h2>
@@ -619,8 +647,10 @@
         </div>
       </section>
 
+      <!-- 视图3：聊天界面 -->
       <section id="chat-view" class="view">
         <div class="chat-shell">
+          <!-- 聊天顶部：角色信息 + 操作按钮 -->
           <div class="chat-header">
             <div class="chat-title">
               <button id="back-timeline" class="button back-btn">返回时间线</button>
@@ -633,7 +663,9 @@
               <button id="clear-chat" class="button">清空记录</button>
             </div>
           </div>
+          <!-- 消息记录区 -->
           <div id="chat-messages" class="chat-messages"></div>
+          <!-- 底部输入框 + 发送按钮 -->
           <div class="chat-input">
             <textarea id="message-input" placeholder="输入消息，Enter 发送，Shift+Enter 换行"></textarea>
             <button id="send-btn" class="button primary">发送</button>
@@ -643,6 +675,7 @@
     </main>
   </div>
 
+  <!-- ===== API 设置弹窗 ===== -->
   <div id="api-modal" class="modal">
     <div class="modal-card">
       <h2>连接 AI</h2>
@@ -667,7 +700,9 @@
     </div>
   </div>
 
+  <script src="character.js"></script>
   <script>
+    // 全局运行时状态：页面数据、配置、当前会话、记忆与流式请求控制。
     const state = {
       data: {
         characters: [],
@@ -683,10 +718,13 @@
       timelineId: null,
       characterId: null,
       history: [],
+      memory: [],
+      regenAttempt: 0,
       isStreaming: false,
       abortController: null
     };
 
+    // 用于聊天背景染色的角色发色映射。
     const HAIR_COLORS = {
       tomori: '#2d2f3a',
       anon: '#c97234',
@@ -702,6 +740,7 @@
 
     const DEFAULT_CHAT_TINT = 'rgba(216, 192, 118, 0.22)';
 
+    // 统一缓存 DOM 引用，减少重复 query。
     const els = {
       timelineView: document.getElementById('timeline-view'),
       emptyView: document.getElementById('empty-view'),
@@ -737,6 +776,10 @@
       return true;
     }
 
+    /**
+     * 将十六进制颜色转为 RGB 对象（"#c97234" → {r:201,g:114,b:52}）。
+     * 支持 3 位缩写和 6 位完整格式。
+     */
     function hexToRgb(hex) {
       const cleaned = hex.replace('#', '');
       const value = cleaned.length === 3
@@ -750,6 +793,10 @@
       };
     }
 
+    /**
+     * 将角色代表色混合为浅色透明 RGBA，用于聊天区域背景染色。
+     * 混合公式：向白色方向偏移 62%，再设透明度 0.35。
+     */
     function makeTint(hex) {
       const { r, g, b } = hexToRgb(hex);
       const mix = (c) => Math.round(c + (255 - c) * 0.62);
@@ -759,6 +806,10 @@
       return `rgba(${rr}, ${gg}, ${bb}, 0.35)`;
     }
 
+    /**
+     * 根据角色 ID 切换聊天背景氛围色。
+     * 角色无映射时恢复默认金色调。
+     */
     function applyChatTint(characterId) {
       if (!characterId || !HAIR_COLORS[characterId]) {
         document.documentElement.style.setProperty('--chat-tint', DEFAULT_CHAT_TINT);
@@ -769,6 +820,7 @@
     }
 
     function loadSettings() {
+      // 从本地读取 API 配置（地址、密钥、模型）。
       const raw = localStorage.getItem('bangchat_settings');
       if (!raw) return;
       try {
@@ -795,6 +847,7 @@
     }
 
     async function fetchJson(path, fallbackId) {
+      // 优先读同目录 json；失败时回退到内联 script JSON（兼容离线/打包场景）。
       try {
         const res = await fetch(path);
         if (!res.ok) throw new Error('load failed');
@@ -809,6 +862,7 @@
     }
 
     async function loadData() {
+      // 启动加载：角色、时间线、世界观并恢复上次会话。
       const [characters, timelines, world] = await Promise.all([
         fetchJson('character.json', 'character-data'),
         fetchJson('timeline.json', 'timeline-data'),
@@ -825,6 +879,7 @@
       restoreState();
       if (state.timelineId && state.characterId) {
         loadHistory();
+        loadMemory();
       }
       updateUI();
     }
@@ -842,6 +897,7 @@
     }
 
     function persistState() {
+      // 仅存储“当前时间线+角色”，消息与记忆另存。
       localStorage.setItem('bangchat_state', JSON.stringify({
         timelineId: state.timelineId,
         characterId: state.characterId
@@ -891,6 +947,7 @@
     }
 
     function selectTimeline(id) {
+      // 切时间线时清空当前角色，避免跨时间线串设定。
       state.timelineId = id;
       state.characterId = null;
       persistState();
@@ -898,16 +955,21 @@
     }
 
     function selectCharacter(id) {
+      // 切角色时重置重生成计数，并加载该角色在该时间线下的历史与记忆。
       state.characterId = id;
+      state.regenAttempt = 0;
       persistState();
       loadHistory();
+      loadMemory();
       updateUI();
       scrollToBottom();
     }
 
     function returnToTimeline() {
+      // 返回时间线选择页，不删除历史记录。
       state.timelineId = null;
       state.characterId = null;
+      state.regenAttempt = 0;
       persistState();
       updateUI();
     }
@@ -945,6 +1007,7 @@
     }
 
     function showView(name) {
+      // 三个主视图：timeline / empty / chat。
       els.timelineView.classList.toggle('active', name === 'timeline');
       els.emptyView.classList.toggle('active', name === 'empty');
       els.chatView.classList.toggle('active', name === 'chat');
@@ -952,8 +1015,15 @@
     }
 
     function getHistoryKey() {
+      // 历史消息按“时间线+角色”隔离存储。
       if (!state.timelineId || !state.characterId) return null;
       return `bangchat_history_${state.timelineId}_${state.characterId}`;
+    }
+
+    function getMemoryKey() {
+      // 记忆池按“时间线+角色”隔离存储。
+      if (!state.timelineId || !state.characterId) return null;
+      return `bangchat_memory_${state.timelineId}_${state.characterId}`;
     }
 
     function loadHistory() {
@@ -973,10 +1043,33 @@
       scrollToBottom();
     }
 
+    function loadMemory() {
+      // 记忆是短句数组，用于增强长期一致性。
+      const key = getMemoryKey();
+      if (!key) return;
+      const raw = localStorage.getItem(key);
+      if (!raw) {
+        state.memory = [];
+        return;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        state.memory = Array.isArray(parsed) ? parsed : [];
+      } catch (err) {
+        state.memory = [];
+      }
+    }
+
     function saveHistory() {
       const key = getHistoryKey();
       if (!key) return;
       localStorage.setItem(key, JSON.stringify(state.history));
+    }
+
+    function saveMemory() {
+      const key = getMemoryKey();
+      if (!key) return;
+      localStorage.setItem(key, JSON.stringify(state.memory));
     }
 
     function renderMessages() {
@@ -1015,14 +1108,25 @@
     }
 
     function buildSystemPrompt(character, timeline) {
+      // 优先使用 character.js 的增强提示词；缺失时回退到基础提示词。
       const world = state.data.world || {};
       const timelineNote = timeline.character_states?.[character.id] || '';
+      if (window.BangCharacterEngine?.buildCharacterPromptParts) {
+        return window.BangCharacterEngine.buildCharacterPromptParts({
+          character,
+          timeline,
+          world,
+          timelineNote,
+          memory: state.memory,
+          regenAttempt: state.regenAttempt
+        });
+      }
       return `你正在扮演《BanG Dream! It's MyGO!!!!! / Ave Mujica》中的角色「${character.name_cn}」。\n` +
         `时间节点：${timeline.title}\n` +
         `世界观：${world.setting || ''}\n` +
         `角色设定：${character.summary || ''}\n` +
         `当前状态：${timelineNote}\n` +
-        `要求：用中文回答，保持角色口吻，不跳出角色，不剧透超出该时间节点的剧情。`;
+        `要求：用简体中文回答，保持角色口吻，不跳出角色，不剧透超出该时间节点的剧情。`;
     }
 
     function resolveEndpoint(base) {
@@ -1033,14 +1137,35 @@
       return `${url}/v1/chat/completions`;
     }
 
+    /**
+     * 流式调用 OpenAI 兼容 API，通过 onDelta 回调逐 token 更新界面。
+     * 支持标准 SSE (data: {...}) 和非流式回退。
+     */
     async function streamCompletion(messages, onDelta, signal) {
       const endpoint = resolveEndpoint(state.settings.apiUrl);
       if (!endpoint) throw new Error('API 地址为空');
+      // 采样参数由角色引擎动态给出，用于提升重生成差异。
+      const generationCfg = window.BangCharacterEngine?.selectGenerationConfig
+        ? window.BangCharacterEngine.selectGenerationConfig({
+            regenAttempt: state.regenAttempt,
+            userTag: `bangchat_${state.characterId || 'unknown'}`
+          })
+        : {
+            temperature: 0.8,
+            top_p: 1,
+            presence_penalty: 0,
+            frequency_penalty: 0,
+            user: 'bangchat-user'
+          };
       const body = {
         model: state.settings.model || 'gpt-4o-mini',
         messages,
         stream: true,
-        temperature: 0.8
+        temperature: generationCfg.temperature,
+        top_p: generationCfg.top_p,
+        presence_penalty: generationCfg.presence_penalty,
+        frequency_penalty: generationCfg.frequency_penalty,
+        user: generationCfg.user
       };
       const headers = {
         'Content-Type': 'application/json'
@@ -1074,6 +1199,7 @@
       const reader = res.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let buffer = '';
+      // 解析 SSE 流：按 data: 行增量拼接内容。
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
@@ -1097,6 +1223,7 @@
     }
 
     async function handleSend() {
+      // 发送用户消息 -> 写入历史 -> 更新记忆 -> 触发 AI 回复。
       if (!state.timelineId || !state.characterId) return;
       const content = els.messageInput.value.trim();
       if (!content) return;
@@ -1108,6 +1235,11 @@
       const userMessage = { role: 'user', content };
       state.history.push(userMessage);
       appendMessage(userMessage);
+      state.regenAttempt = 0;
+      if (window.BangCharacterEngine?.updateMemoryBank) {
+        state.memory = window.BangCharacterEngine.updateMemoryBank(state.memory, content);
+        saveMemory();
+      }
       saveHistory();
       els.messageInput.value = '';
       scrollToBottom();
@@ -1116,9 +1248,13 @@
     }
 
     function clearChat() {
+      // 清空当前“时间线+角色”的历史与记忆。
       if (!state.timelineId || !state.characterId) return;
       abortStreaming();
       state.history = [];
+      state.memory = [];
+      state.regenAttempt = 0;
+      saveMemory();
       saveHistory();
       renderMessages();
     }
@@ -1139,28 +1275,36 @@
     }
 
     function rollbackLastExchange() {
+      // 回退到最近一次 user 消息之前（相当于撤销一轮对话）。
       if (!state.timelineId || !state.characterId) return;
       abortStreaming();
       const lastUserIndex = getLastUserIndex();
       if (lastUserIndex === -1) return;
       state.history = state.history.slice(0, lastUserIndex);
+      state.regenAttempt = 0;
       saveHistory();
       renderMessages();
       scrollToBottom();
     }
 
     async function regenerateLast() {
+      // 重新生成：保留最后一条 user，删除其后的 assistant，再重答。
       if (!state.timelineId || !state.characterId) return;
       abortStreaming();
       const lastUserIndex = getLastUserIndex();
       if (lastUserIndex === -1) return;
       state.history = state.history.slice(0, lastUserIndex + 1);
+      state.regenAttempt += 1;
       renderMessages();
       saveHistory();
       scrollToBottom();
       await generateAssistantResponse();
     }
 
+    /**
+     * 组装 system + history messages 并调用流式 API。
+     * 自动处理错误回显和流中断清理。
+     */
     async function generateAssistantResponse() {
       const character = state.data.characters.find((c) => c.id === state.characterId);
       const timeline = state.data.timelines.find((t) => t.id === state.timelineId);
@@ -1174,6 +1318,7 @@
       const systemPrompt = buildSystemPrompt(character, timeline);
       const messages = [
         { role: 'system', content: systemPrompt },
+        // 历史里不存 system，这里按需重建。
         ...state.history.filter((msg) => msg.role !== 'system').map((msg) => ({
           role: msg.role,
           content: msg.content
@@ -1201,6 +1346,8 @@
       }
     }
 
+    // ==================== 事件绑定 ====================
+    // 发送按钮 & 回车发送
     els.sendBtn.addEventListener('click', handleSend);
     els.messageInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' && !event.shiftKey) {
@@ -1208,12 +1355,17 @@
         handleSend();
       }
     });
+
+    // 导航：返回时间线选择
     els.newChat.addEventListener('click', returnToTimeline);
     els.backTimeline.addEventListener('click', returnToTimeline);
+
+    // 聊天操作：清空 / 回退 / 重新生成
     els.clearChat.addEventListener('click', clearChat);
     els.rollbackChat.addEventListener('click', rollbackLastExchange);
     els.regenChat.addEventListener('click', regenerateLast);
 
+    // API 设置弹窗
     els.openSettings.addEventListener('click', showModal);
     els.closeModal.addEventListener('click', hideModal);
     els.saveSettings.addEventListener('click', () => {
@@ -1236,13 +1388,19 @@
       hideModal();
     });
 
-    window.addEventListener('beforeunload', saveHistory);
+    window.addEventListener('beforeunload', () => {
+      // 页面关闭前兜底保存。
+      saveHistory();
+      saveMemory();
+    });
 
-    loadSettings();
-    loadData().catch((err) => {
+    // ==================== 应用初始化 ====================
+    loadSettings();       // 1. 先读本地存储的 API 配置
+    loadData().catch((err) => {  // 2. 加载角色/时间线/世界观 JSON
       console.error(err);
     });
 
+    // 3. 首次打开且无配置时自动弹出设置弹窗
     if (!state.settings.apiUrl || !state.settings.apiKey) {
       showModal();
     }

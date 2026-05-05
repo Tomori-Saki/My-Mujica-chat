@@ -53,6 +53,7 @@
     const timelineNote = String(input.timelineNote || '').trim();
     const memory = uniqueStable(compact(toArray(input.memory)));
     const regenAttempt = Number(input.regenAttempt || 0);
+    const userMsgLen = Number(input.userMessageLength || 0);
     const profile = normalizeCharacterProfile(character);
 
     const lines = [
@@ -62,6 +63,13 @@
       `角色设定：${profile.summary}`,
       `当前状态：${timelineNote}`
     ];
+
+    // 根据用户消息长度动态调整回复长度，贴近日常聊天节奏
+    if (userMsgLen <= 15) {
+      lines.push('对方消息很短，请用1-2句话简洁回应，保持日常聊天的自然节奏。');
+    } else if (userMsgLen > 120) {
+      lines.push('对方分享了很多内容，请充分回应，可以适当展开，同样用较长的消息回复。');
+    }
 
     if (profile.personality.length) {
       lines.push(`性格关键词：${profile.personality.join('、')}`);

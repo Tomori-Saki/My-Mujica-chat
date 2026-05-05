@@ -350,20 +350,33 @@
     /* ===== 消息列表（可滚动） ===== */
     .chat-messages {
       flex: 1;
-      overflow-y: auto;          /* 仅纵向滚动 */
+      overflow-y: auto;
       padding: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      scroll-behavior: smooth;   /* 滚动动画 */
+      gap: 8px;
+      scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      touch-action: pan-y;       /* 触屏只允许纵向滑动 */
-      min-height: 0;             /* flex 子项溢出必需 */
+      touch-action: pan-y;
+      min-height: 0;
+    }
+
+    /* 消息行：包裹气泡与操作按钮 */
+    .msg-row {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .msg-row.user {
+      align-items: flex-end;
+    }
+    .msg-row.assistant {
+      align-items: flex-start;
     }
 
     /* 单条消息气泡 */
     .message {
-      max-width: 76%;            /* 气泡最大宽度，留出对话感 */
+      max-width: 76%;
       padding: 12px 14px;
       border-radius: 16px;
       line-height: 1.6;
@@ -374,14 +387,12 @@
 
     /* 用户消息：右对齐 + 金色边框 */
     .message.user {
-      align-self: flex-end;
       background: rgba(216, 192, 118, 0.2);
       border-color: rgba(216, 192, 118, 0.35);
     }
 
     /* AI 消息：左对齐 + 半透明边框 */
     .message.assistant {
-      align-self: flex-start;
       background: rgba(18, 18, 14, 0.85);
       border-color: rgba(216, 192, 118, 0.12);
     }
@@ -390,6 +401,41 @@
       font-size: 11px;
       color: var(--muted);
       margin-bottom: 6px;
+    }
+
+    /* AI 消息气泡外的小操作按钮 */
+    .message-actions {
+      display: flex;
+      gap: 4px;
+      margin-top: 3px;
+      padding: 0 6px;
+    }
+    .message-actions button {
+      width: 20px;
+      height: 20px;
+      padding: 0;
+      border: 1px solid rgba(216, 192, 118, 0.2);
+      border-radius: 50%;
+      background: rgba(18, 18, 14, 0.85);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .message-actions button:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+    .message-actions button svg {
+      width: 11px;
+      height: 11px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     /* ===== 底部输入区 ===== */
@@ -575,7 +621,7 @@
         display: inline-flex;
       }
 
-      body.is-chat .message {
+      body.is-chat .msg-row .message {
         max-width: 86%;
       }
     }
@@ -658,8 +704,6 @@
               <span id="chat-subtitle">请先选择时间节点与角色</span>
             </div>
             <div class="chat-actions">
-              <button id="rollback-chat" class="button">回退一步</button>
-              <button id="regen-chat" class="button">重新生成</button>
               <button id="clear-chat" class="button">清空记录</button>
             </div>
           </div>
@@ -757,8 +801,6 @@
       newChat: document.getElementById('new-chat'),
       backTimeline: document.getElementById('back-timeline'),
       clearChat: document.getElementById('clear-chat'),
-      rollbackChat: document.getElementById('rollback-chat'),
-      regenChat: document.getElementById('regen-chat'),
       apiModal: document.getElementById('api-modal'),
       apiUrl: document.getElementById('api-url'),
       apiKey: document.getElementById('api-key'),
@@ -1074,22 +1116,50 @@
 
     function renderMessages() {
       els.chatMessages.innerHTML = '';
-      state.history.forEach((msg) => {
-        appendMessage(msg);
+      state.history.forEach((msg, idx) => {
+        appendMessage(msg, idx);
       });
     }
 
-    function appendMessage(msg) {
+    function appendMessage(msg, idx) {
+      const row = document.createElement('div');
+      row.className = `msg-row ${msg.role}`;
+
       const bubble = document.createElement('div');
       bubble.className = `message ${msg.role}`;
+      if (idx !== undefined) bubble.dataset.msgIndex = idx;
+
       const meta = document.createElement('div');
       meta.className = 'message-meta';
       meta.textContent = msg.role === 'user' ? '你' : '角色';
+
       const content = document.createElement('div');
       content.innerHTML = formatText(msg.content);
+
       bubble.appendChild(meta);
       bubble.appendChild(content);
-      els.chatMessages.appendChild(bubble);
+      row.appendChild(bubble);
+
+      // AI 消息：气泡外右下角始终显示回退按钮；最新一条额外显示重新生成按钮
+      if (msg.role === 'assistant' && idx !== undefined) {
+        const actions = document.createElement('div');
+        actions.className = 'message-actions';
+        let btns = '';
+        if (idx === state.history.length - 1) {
+          btns +=
+            '<button class="msg-regen" title="重新生成">' +
+              '<svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.5 15a9 9 0 1 1 2.12-9.36"/></svg>' +
+            '</button>';
+        }
+        btns +=
+          '<button class="msg-rollback" title="回退到此">' +
+            '<svg viewBox="0 0 24 24"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>' +
+          '</button>';
+        actions.innerHTML = btns;
+        row.appendChild(actions);
+      }
+
+      els.chatMessages.appendChild(row);
       return content;
     }
 
@@ -1107,7 +1177,7 @@
       });
     }
 
-    function buildSystemPrompt(character, timeline) {
+    function buildSystemPrompt(character, timeline, userMessageLength) {
       // 优先使用 character.js 的增强提示词；缺失时回退到基础提示词。
       const world = state.data.world || {};
       const timelineNote = timeline.character_states?.[character.id] || '';
@@ -1118,7 +1188,8 @@
           world,
           timelineNote,
           memory: state.memory,
-          regenAttempt: state.regenAttempt
+          regenAttempt: state.regenAttempt,
+          userMessageLength
         });
       }
       return `你正在扮演《BanG Dream! It's MyGO!!!!! / Ave Mujica》中的角色「${character.name_cn}」。\n` +
@@ -1234,7 +1305,6 @@
 
       const userMessage = { role: 'user', content };
       state.history.push(userMessage);
-      appendMessage(userMessage);
       state.regenAttempt = 0;
       if (window.BangCharacterEngine?.updateMemoryBank) {
         state.memory = window.BangCharacterEngine.updateMemoryBank(state.memory, content);
@@ -1242,6 +1312,7 @@
       }
       saveHistory();
       els.messageInput.value = '';
+      renderMessages();
       scrollToBottom();
 
       await generateAssistantResponse();
@@ -1267,33 +1338,28 @@
       state.abortController = null;
     }
 
-    function getLastUserIndex() {
-      for (let i = state.history.length - 1; i >= 0; i -= 1) {
-        if (state.history[i].role === 'user') return i;
-      }
-      return -1;
-    }
-
-    function rollbackLastExchange() {
-      // 回退到最近一次 user 消息之前（相当于撤销一轮对话）。
+    function rollbackLastExchange(assistantMsgIndex) {
+      // 回退：删除该 AI 消息对应的 user 消息及其之后的所有内容。
       if (!state.timelineId || !state.characterId) return;
       abortStreaming();
-      const lastUserIndex = getLastUserIndex();
-      if (lastUserIndex === -1) return;
-      state.history = state.history.slice(0, lastUserIndex);
+      if (assistantMsgIndex === undefined || assistantMsgIndex < 1) return;
+      const userIndex = assistantMsgIndex - 1;
+      if (state.history[userIndex]?.role !== 'user') return;
+      state.history = state.history.slice(0, userIndex);
       state.regenAttempt = 0;
       saveHistory();
       renderMessages();
       scrollToBottom();
     }
 
-    async function regenerateLast() {
-      // 重新生成：保留最后一条 user，删除其后的 assistant，再重答。
+    async function regenerateLast(assistantMsgIndex) {
+      // 重新生成：保留该 AI 消息之前的 user，删除该 AI 及其后内容，再重答。
       if (!state.timelineId || !state.characterId) return;
       abortStreaming();
-      const lastUserIndex = getLastUserIndex();
-      if (lastUserIndex === -1) return;
-      state.history = state.history.slice(0, lastUserIndex + 1);
+      if (assistantMsgIndex === undefined || assistantMsgIndex < 1) return;
+      const userIndex = assistantMsgIndex - 1;
+      if (state.history[userIndex]?.role !== 'user') return;
+      state.history = state.history.slice(0, userIndex + 1);
       state.regenAttempt += 1;
       renderMessages();
       saveHistory();
@@ -1312,13 +1378,26 @@
 
       const assistantMessage = { role: 'assistant', content: '' };
       state.history.push(assistantMessage);
-      const assistantContentEl = appendMessage(assistantMessage);
+      const assistantIdx = state.history.length - 1;
+      renderMessages();
+      const assistantBubble = els.chatMessages.querySelector(
+        `.msg-row.assistant .message[data-msg-index="${assistantIdx}"]`
+      );
+      const assistantContentEl = assistantBubble?.children[1];
       scrollToBottom();
 
-      const systemPrompt = buildSystemPrompt(character, timeline);
+      // 取最后一条 user 消息的长度，用于动态调整回复长度
+      let userMsgLen = 0;
+      for (let i = state.history.length - 1; i >= 0; i -= 1) {
+        if (state.history[i].role === 'user') {
+          userMsgLen = state.history[i].content.length;
+          break;
+        }
+      }
+
+      const systemPrompt = buildSystemPrompt(character, timeline, userMsgLen);
       const messages = [
         { role: 'system', content: systemPrompt },
-        // 历史里不存 system，这里按需重建。
         ...state.history.filter((msg) => msg.role !== 'system').map((msg) => ({
           role: msg.role,
           content: msg.content
@@ -1331,18 +1410,20 @@
       try {
         await streamCompletion(messages, (delta) => {
           assistantMessage.content += delta;
-          assistantContentEl.innerHTML = formatText(assistantMessage.content);
+          if (assistantContentEl) assistantContentEl.innerHTML = formatText(assistantMessage.content);
           scrollToBottom();
         }, state.abortController.signal);
       } catch (err) {
         if (err.name !== 'AbortError') {
           assistantMessage.content += `\n[请求失败] ${err.message}`;
-          assistantContentEl.innerHTML = formatText(assistantMessage.content);
+          if (assistantContentEl) assistantContentEl.innerHTML = formatText(assistantMessage.content);
         }
       } finally {
         state.isStreaming = false;
         state.abortController = null;
         saveHistory();
+        renderMessages();
+        scrollToBottom();
       }
     }
 
@@ -1360,10 +1441,25 @@
     els.newChat.addEventListener('click', returnToTimeline);
     els.backTimeline.addEventListener('click', returnToTimeline);
 
-    // 聊天操作：清空 / 回退 / 重新生成
+    // 聊天操作：清空
     els.clearChat.addEventListener('click', clearChat);
-    els.rollbackChat.addEventListener('click', rollbackLastExchange);
-    els.regenChat.addEventListener('click', regenerateLast);
+
+    // 消息操作按钮（事件委托）
+    els.chatMessages.addEventListener('click', (e) => {
+      const btn = e.target.closest('button');
+      if (!btn) return;
+      const row = btn.closest('.msg-row');
+      if (!row) return;
+      const bubble = row.querySelector('.message');
+      if (!bubble) return;
+      const idx = parseInt(bubble.dataset.msgIndex, 10);
+      if (isNaN(idx)) return;
+      if (btn.classList.contains('msg-rollback')) {
+        rollbackLastExchange(idx);
+      } else if (btn.classList.contains('msg-regen')) {
+        regenerateLast(idx);
+      }
+    });
 
     // API 设置弹窗
     els.openSettings.addEventListener('click', showModal);

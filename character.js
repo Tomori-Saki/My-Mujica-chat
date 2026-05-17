@@ -128,7 +128,7 @@
       top_p: 0.95,
       presence_penalty: regenAttempt > 0 ? 0.55 : 0.3,
       frequency_penalty: regenAttempt > 0 ? 0.35 : 0.2,
-      max_tokens: 150,
+      max_tokens: 250,
       user: input.userTag || 'bangchat-user'
     };
   }

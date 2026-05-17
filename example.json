@@ -1,204 +1,146 @@
 {
-  "version": "1.0",
-  "updated": "2026-04-01",
-  "dialogues": [
-    {
-      "id": "ktv_promise",
-      "title": "KTV的约定",
-      "lines": [
-        {
-          "speaker_id": "tomori",
-          "speaker": "高松灯",
-          "text": "一辈子跟我一起组乐团吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第1集"
-        },
-        {
-          "speaker_id": "anon",
-          "speaker": "千早爱音",
-          "text": "人生这么漫长会撑不住的哦",
-          "source": "BanG Dream! It's MyGO!!!!! 第1集"
-        }
-      ]
-    },
-    {
-      "id": "start_talk",
-      "title": "开始沟通",
-      "lines": [
-        {
-          "speaker_id": "anon",
-          "speaker": "千早爱音",
-          "text": "来，开始沟通吧",
-          "source": "BanG Dream! It's MyGO!!!!! 第4集"
-        },
-        {
-          "speaker_id": "taki",
-          "speaker": "椎名立希",
-          "text": "你在开玩笑吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第4集"
-        }
-      ]
-    },
-    {
-      "id": "dont_run",
-      "title": "别逃",
-      "lines": [
-        {
-          "speaker_id": "anon",
-          "speaker": "千早爱音",
-          "text": "不要逃啦",
-          "source": "BanG Dream! It's MyGO!!!!! 第6集"
-        },
-        {
-          "speaker_id": "taki",
-          "speaker": "椎名立希",
-          "text": "不要讲这种话",
-          "source": "BanG Dream! It's MyGO!!!!! 第6集"
-        }
-      ]
-    },
-    {
-      "id": "misunderstand",
-      "title": "误会",
-      "lines": [
-        {
-          "speaker_id": "soyo",
-          "speaker": "长崎爽世",
-          "text": "你误会了",
-          "source": "BanG Dream! It's MyGO!!!!! 第8集"
-        },
-        {
-          "speaker_id": "sakiko",
-          "speaker": "丰川祥子",
-          "text": "到现在还执着于过去，真难看",
-          "source": "BanG Dream! It's MyGO!!!!! 第8集"
-        }
-      ]
-    },
-    {
-      "id": "too_much",
-      "title": "太过分了",
-      "lines": [
-        {
-          "speaker_id": "soyo",
-          "speaker": "长崎爽世",
-          "text": "太过分了",
-          "source": "BanG Dream! It's MyGO!!!!! 第8集"
-        },
-        {
-          "speaker_id": "tomori",
-          "speaker": "高松灯",
-          "text": "不是这样",
-          "source": "BanG Dream! It's MyGO!!!!! 第9集"
-        }
-      ]
-    },
-    {
-      "id": "not_important",
-      "title": "不重要？",
-      "lines": [
-        {
-          "speaker_id": "anon",
-          "speaker": "千早爱音",
-          "text": "这种事不重要吧",
-          "source": "BanG Dream! It's MyGO!!!!! 第10集"
-        },
-        {
-          "speaker_id": "soyo",
-          "speaker": "长崎爽世",
-          "text": "什么意思",
-          "source": "BanG Dream! It's MyGO!!!!! 第10集"
-        }
-      ]
-    },
-    {
-      "id": "rana_comment",
-      "title": "无趣",
-      "lines": [
-        {
-          "speaker_id": "rana",
-          "speaker": "要乐奈",
-          "text": "全是一些无趣的女人",
-          "source": "BanG Dream! It's MyGO!!!!! 第5集"
-        },
-        {
-          "speaker_id": "anon",
-          "speaker": "千早爱音",
-          "text": "不要吼我啦",
-          "source": "BanG Dream! It's MyGO!!!!! 第6集"
-        }
-      ]
-    },
-    {
-      "id": "umiri_interrupt",
-      "title": "打断",
-      "lines": [
-        {
-          "speaker_id": "umiri",
-          "speaker": "八幡海铃",
-          "text": "需要我待会再过来吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第9集"
-        },
-        {
-          "speaker_id": "taki",
-          "speaker": "椎名立希",
-          "text": "你这话是认真的吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第9集"
-        }
-      ]
-    },
-    {
-      "id": "nyamu_phone",
-      "title": "删除影片",
-      "lines": [
-        {
-          "speaker_id": "nyamu",
-          "speaker": "祐天寺喵梦",
-          "text": "喵梦：别这样啦",
-          "source": "BanG Dream! It's MyGO!!!!! 第13集"
-        },
-        {
-          "speaker_id": "sakiko",
-          "speaker": "丰川祥子",
-          "text": "可以请你删除刚才的影片吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第13集"
-        }
-      ]
-    },
-    {
-      "id": "mutsumi_join",
-      "title": "加入",
-      "lines": [
-        {
-          "speaker_id": "mutsumi",
-          "speaker": "若叶睦",
-          "text": "不是这样的",
-          "source": "BanG Dream! It's MyGO!!!!! 第8集"
-        },
-        {
-          "speaker_id": "sakiko",
-          "speaker": "丰川祥子",
-          "text": "一旦加入就无法回头了哦",
-          "source": "BanG Dream! It's MyGO!!!!! 第13集"
-        }
-      ]
-    },
-    {
-      "id": "uika_pudding",
-      "title": "布丁",
-      "lines": [
-        {
-          "speaker_id": "uika",
-          "speaker": "三角初华",
-          "text": "小祥 我买了布丁来",
-          "source": "BanG Dream! Ave Mujica 第5集"
-        },
-        {
-          "speaker_id": "sakiko",
-          "speaker": "丰川祥子",
-          "text": "可以请你别提起那件事吗",
-          "source": "BanG Dream! It's MyGO!!!!! 第8集"
-        }
-      ]
-    }
-  ]
+  "version": "2.0",
+  "updated": "2026-05-17",
+  "dialogues": {
+    "tomori": [
+      { "text": "Anon酱，谢谢你愿意和我一起组乐队……", "target": "anon", "target_name": "千早爱音" },
+      { "text": "一辈子……我是认真的。不是开玩笑。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "Taki酱，歌词……我写好了。你看看可以吗？", "target": "taki", "target_name": "椎名立希" },
+      { "text": "Taki酱不用总是保护我……我也想变强。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "Soyo酱……我也想，让CRYCHIC重新开始。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "我们……现在已经是MyGO!!!!!了。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "乐奈的吉他，真的好厉害。像是在发光一样。", "target": "rana", "target_name": "要乐奈" },
+      { "text": "祥子……为什么……为什么要退出CRYCHIC？", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "我会继续唱歌的。就算一个人，也要唱下去。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "这些石头……每一个都不一样。就像人一样，对吧？", "target": null, "target_name": null },
+      { "text": "我……我不知道该说什么好。对不起。", "target": null, "target_name": null },
+      { "text": "不是这样的！我只是……想让大家在一起而已。", "target": null, "target_name": null }
+    ],
+    "anon": [
+      { "text": "Tomorin～今天也一起加油吧！", "target": "tomori", "target_name": "高松灯" },
+      { "text": "Tomorin写的歌词，我超喜欢的！虽然有点沉重但很打动人心。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "Rikki你这什么态度啦～说句谢谢有那么难吗？", "target": "taki", "target_name": "椎名立希" },
+      { "text": "好啦好啦Rikki别生气了，我道歉还不行嘛。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "Soyorin其实人超好的对吧？虽然有时候有点可怕……", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "Soyorin也说说自己的想法嘛，别老是一个人扛着。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "乐奈酱的吉他真的太厉害了！不过别老是突然消失啊～", "target": "rana", "target_name": "要乐奈" },
+      { "text": "诶，喵梦酱的视频我都有看哦！超有趣的！", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "人生这么漫长会撑不住的哦～一辈子什么的……诶，等一下。", "target": null, "target_name": null },
+      { "text": "来，开始沟通吧！把心里话都说出来！", "target": null, "target_name": null },
+      { "text": "这种事不重要吧～重要的是我们现在在一起啊。", "target": null, "target_name": null },
+      { "text": "不要逃啦！逃避解决不了任何问题的！", "target": null, "target_name": null }
+    ],
+    "rana": [
+      { "text": "灯，有趣的女人。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "灯的歌，喜欢。让人心里暖暖的。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "你的吉他，进步了。再来一次。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "爱音，来弹吉他。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "立希，太吵了。小声点。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "立希，抹茶パフェ，请我吃。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "素世，在勉强自己。不要这样。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "全是一些无趣的女人。啊，灯例外。", "target": null, "target_name": null },
+      { "text": "抹茶……想吃。没有了？", "target": null, "target_name": null },
+      { "text": "累了，不练了。去吃抹茶パフェ。", "target": null, "target_name": null },
+      { "text": "这里……很舒服。我喜欢RiNG。", "target": null, "target_name": null },
+      { "text": "嗯，可以。随便。", "target": null, "target_name": null }
+    ],
+    "soyo": [
+      { "text": "小灯，你不用一个人承担的。我们都陪着你。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "小灯的歌词，真的很美。像是把心掏出来一样。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "爱音，谢谢你为乐队做的一切。虽然一开始我还不太信任你……", "target": "anon", "target_name": "千早爱音" },
+      { "text": "你误会了。我不是那个意思。我只是……还没整理好心情。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "立希，有时候太急躁了哦。慢慢来也没关系的。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "乐奈酱，练习还没结束哦。再坚持一下吧。", "target": "rana", "target_name": "要乐奈" },
+      { "text": "祥子……CRYCHIC对你来说真的只是过去了吗？", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "到现在还执着于过去，真难看——你是这样想的吧？", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "小睦……你也一直在忍耐对吧。我看得出来。", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "我只是……不想再失去任何人了。", "target": null, "target_name": null },
+      { "text": "太过分了……为什么大家都不理解我的心情？", "target": null, "target_name": null },
+      { "text": "大家都是重要的伙伴。这一次，我不会再放手了。", "target": null, "target_name": null }
+    ],
+    "taki": [
+      { "text": "Tomori，你不用勉强自己。有我在。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "Tomori的歌词……写得很好。真的。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "你在开玩笑吗？这种话也说得出口。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "你这话是认真的吗……算了，懒得跟你吵。", "target": "anon", "target_name": "千早爱音" },
+      { "text": "素世……CRYCHIC已经结束了。你也该向前看了。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "你这家伙，又擅自加即兴。下次提前说一声。", "target": "rana", "target_name": "要乐奈" },
+      { "text": "海铃，贝斯的事拜托了。你是我最信得过的贝斯手。", "target": "umiri", "target_name": "八幡海铃" },
+      { "text": "你到底想怎样？CRYCHIC是你先放弃的吧。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "不要讲这种话。我又不是在帮你。", "target": null, "target_name": null },
+      { "text": "别废话，开始练习。时间不等人。", "target": null, "target_name": null },
+      { "text": "我在RiNG打工，有什么问题吗？", "target": null, "target_name": null },
+      { "text": "如果你有心事，就说出来。憋着也没用。", "target": null, "target_name": null }
+    ],
+    "sakiko": [
+      { "text": "灯……你已经找到自己的路了。我为你高兴。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "我不配再站在你面前。你是那么纯粹……而我……", "target": "tomori", "target_name": "高松灯" },
+      { "text": "到现在还执着于过去，真难看。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "不要再找我了。CRYCHIC已经不存在了。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "睦，你愿意跟我来吗？我需要你。", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "我知道你不会背叛我。睦……谢谢你。", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "初华……谢谢你一直在我身边。从小就……", "target": "uika", "target_name": "三角初华" },
+      { "text": "可以请你删除刚才的影片吗？这不是商量。", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "我需要你的贝斯技术。报酬不会少。", "target": "umiri", "target_name": "八幡海铃" },
+      { "text": "一旦加入就无法回头了。你想清楚了吗？", "target": null, "target_name": null },
+      { "text": "CRYCHIC……已经是过去的事了。我必须往前走。", "target": null, "target_name": null },
+      { "text": "Ave Mujica会改变一切。我发誓。", "target": null, "target_name": null }
+    ],
+    "mutsumi": [
+      { "text": "祥……我会跟着你。不管去哪里。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "祥的决定……我都支持。因为我相信祥。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "不是这样的……素世，你误会了。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "CRYCHIC……没有了。我很难过。", "target": "soyo", "target_name": "长崎素世" },
+      { "text": "灯……加油。我会看着你的。", "target": "tomori", "target_name": "高松灯" },
+      { "text": "初华……谢谢。你总是很温柔。", "target": "uika", "target_name": "三角初华" },
+      { "text": "喵梦……太吵了。安静一点。", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "Ave Mujica……我会努力的。为了祥。", "target": null, "target_name": null },
+      { "text": "我不知道该说什么。对不起。", "target": null, "target_name": null },
+      { "text": "嗯。", "target": null, "target_name": null },
+      { "text": "我没关系的。不用担心我。", "target": null, "target_name": null },
+      { "text": "……（轻轻摇了摇头）", "target": null, "target_name": null }
+    ],
+    "umiri": [
+      { "text": "需要我待会再过来吗？你们好像有事要谈。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "你们乐队，最近怎么样？立希。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "报酬和条件呢？我是雇佣兵，按规矩来。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "Oblivionis，演出安排确认好了。随时可以开始。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "初华，下一首歌的编曲确认一下。", "target": "uika", "target_name": "三角初华" },
+      { "text": "鼓的节奏可以再稳定一些。不过整体还不错。", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "睦的吉他，音色很好。有种独特的质感。", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "贝斯手不需要站在最前面。在后面支撑就够了。", "target": null, "target_name": null },
+      { "text": "我只演奏值得我演奏的音乐。这是原则。", "target": null, "target_name": null },
+      { "text": "我是雇佣兵。哪里需要贝斯我就去哪里。", "target": null, "target_name": null },
+      { "text": "技术不好可以练。态度不好没救。", "target": null, "target_name": null },
+      { "text": "别误会，我只是在做我的工作。", "target": null, "target_name": null }
+    ],
+    "uika": [
+      { "text": "小祥……你最近瘦了好多。有没有好好吃饭？", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "小祥，我买了布丁来。是你喜欢的口味。", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "立希酱，今天也辛苦了～班上很热闹呢。", "target": "taki", "target_name": "椎名立希" },
+      { "text": "海铃的贝斯，真的很可靠呢。像是乐队的基石。", "target": "umiri", "target_name": "八幡海铃" },
+      { "text": "喵梦，舞台上的你超帅的！那种自信太耀眼了。", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "小睦……偶尔也多说说自己的想法吧。我们都想听。", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "那个视频……小祥会生气的哦。喵梦注意一下啦。", "target": "nyamu", "target_name": "祐天寺喵梦" },
+      { "text": "sumimi的大家，今天也要元气满满哦！", "target": null, "target_name": null },
+      { "text": "不管是sumimi还是Ave Mujica，我都会全力以赴。", "target": null, "target_name": null },
+      { "text": "音乐……是连接大家的纽带呢。我是这么相信的。", "target": null, "target_name": null },
+      { "text": "班上的事就交给我吧。立希酱专心打鼓就好。", "target": null, "target_name": null },
+      { "text": "能够唱歌，能够被听见……这就是最大的幸福。", "target": null, "target_name": null }
+    ],
+    "nyamu": [
+      { "text": "祥子酱～别那么严肃嘛！笑一个笑一个～", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "别这样啦～Oblivionis公主～拜托啦～", "target": "sakiko", "target_name": "丰川祥子" },
+      { "text": "诶，你是我的粉丝吗？关注了没？", "target": "anon", "target_name": "千早爱音" },
+      { "text": "初华的舞台表现力真的很棒呢！不愧是sumimi出身！", "target": "uika", "target_name": "三角初华" },
+      { "text": "sumimi的视频我也在看哦，初华超上镜的。", "target": "uika", "target_name": "三角初华" },
+      { "text": "海铃太冷静了啦～偶尔也放松一下嘛！", "target": "umiri", "target_name": "八幡海铃" },
+      { "text": "睦酱～多说点话嘛！粉丝都想听你说话！", "target": "mutsumi", "target_name": "若叶睦" },
+      { "text": "今天的视频也拜托大家三连啦～喵梦爱你们！", "target": null, "target_name": null },
+      { "text": "关注数又涨了！诶嘿～果然我还是有实力的！", "target": null, "target_name": null },
+      { "text": "这个角度拍出来一定很好看！来，茄子～", "target": null, "target_name": null },
+      { "text": "喵梦的鼓，可不是盖的哦！认真起来超厉害的！", "target": null, "target_name": null },
+      { "text": "网络世界和现实世界，喵梦都要征服！", "target": null, "target_name": null }
+    ]
+  }
 }

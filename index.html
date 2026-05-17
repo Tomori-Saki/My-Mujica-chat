@@ -905,16 +905,18 @@
 
     async function loadData() {
       // 启动加载：角色、时间线、世界观并恢复上次会话。
-      const [characters, timelines, world] = await Promise.all([
+      const [characters, timelines, world, examples] = await Promise.all([
         fetchJson('character.json', 'character-data'),
         fetchJson('timeline.json', 'timeline-data'),
-        fetchJson('world.json', 'world-data')
+        fetchJson('world.json', 'world-data'),
+        fetchJson('example.json', 'example-data')
       ]);
 
       state.data.characters = characters.characters || [];
       state.data.bands = characters.bands || [];
       state.data.timelines = timelines.nodes || [];
       state.data.world = world || {};
+      state.data.exampleDialogues = (examples && examples.dialogues) ? examples.dialogues : {};
 
       renderTimelineCards();
       renderCharacterLists();
@@ -1182,6 +1184,8 @@
       const world = state.data.world || {};
       const timelineNote = timeline.character_states?.[character.id] || '';
       if (window.BangCharacterEngine?.buildCharacterPromptParts) {
+        const charDialogues = (state.data.exampleDialogues && state.data.exampleDialogues[character.id])
+          ? state.data.exampleDialogues[character.id] : [];
         return window.BangCharacterEngine.buildCharacterPromptParts({
           character,
           timeline,
@@ -1189,7 +1193,8 @@
           timelineNote,
           memory: state.memory,
           regenAttempt: state.regenAttempt,
-          userMessageLength
+          userMessageLength,
+          exampleDialogues: charDialogues
         });
       }
       return `你正在扮演《BanG Dream! It's MyGO!!!!! / Ave Mujica》中的角色「${character.name_cn}」。\n` +
@@ -1226,6 +1231,7 @@
             top_p: 1,
             presence_penalty: 0,
             frequency_penalty: 0,
+            max_tokens: 150,
             user: 'bangchat-user'
           };
       const body = {
@@ -1236,6 +1242,7 @@
         top_p: generationCfg.top_p,
         presence_penalty: generationCfg.presence_penalty,
         frequency_penalty: generationCfg.frequency_penalty,
+        max_tokens: generationCfg.max_tokens || 150,
         user: generationCfg.user
       };
       const headers = {

@@ -46,7 +46,7 @@
   }
 
   function buildCharacterPromptParts(input) {
-    // 组装系统提示词：世界观 + 时间线状态 + 人设细节 + 记忆。
+    // 组装系统提示词：世界观 + 时间线状态 + 人设细节 + 示例对话 + 记忆。
     const character = input.character || {};
     const timeline = input.timeline || {};
     const world = input.world || {};
@@ -54,6 +54,7 @@
     const memory = uniqueStable(compact(toArray(input.memory)));
     const regenAttempt = Number(input.regenAttempt || 0);
     const userMsgLen = Number(input.userMessageLength || 0);
+    const exampleDialogues = compact(toArray(input.exampleDialogues));
     const profile = normalizeCharacterProfile(character);
 
     const lines = [
@@ -64,11 +65,13 @@
       `当前状态：${timelineNote}`
     ];
 
-    // 根据用户消息长度动态调整回复长度，贴近日常聊天节奏
+    // 根据用户消息长度动态调整回复长度，所有回复强制50字以内，控制token消耗和阅读负担
     if (userMsgLen <= 15) {
-      lines.push('对方消息很短，请用1-2句话简洁回应，保持日常聊天的自然节奏。');
+      lines.push('对方消息很短，请用1-2句简洁回应，回复控制在50字以内。');
     } else if (userMsgLen > 120) {
-      lines.push('对方分享了很多内容，请充分回应，可以适当展开，同样用较长的消息回复。');
+      lines.push('对方分享了很多内容，请充分回应但回复必须控制在50字以内。');
+    } else {
+      lines.push('请根据对方消息长度自然回应，但回复必须控制在50字以内。');
     }
 
     if (profile.personality.length) {
@@ -88,6 +91,13 @@
         .map((item) => `${item.target} -> ${item.alias}${item.note ? `（${item.note}）` : ''}`)
         .join('；');
       lines.push(`特定称呼：${naming}`);
+    }
+    if (exampleDialogues.length) {
+      lines.push('以下是你扮演该角色时的对话示例，请严格参考其语气、措辞和表达习惯：');
+      exampleDialogues.forEach(function (d) {
+        var targetHint = d.target_name ? `（对${d.target_name}）` : '';
+        lines.push(`示例${targetHint}："${d.text}"`);
+      });
     }
     if (profile.taboos.length) {
       lines.push(`避免点：${profile.taboos.join('；')}`);
@@ -118,6 +128,7 @@
       top_p: 0.95,
       presence_penalty: regenAttempt > 0 ? 0.55 : 0.3,
       frequency_penalty: regenAttempt > 0 ? 0.35 : 0.2,
+      max_tokens: 150,
       user: input.userTag || 'bangchat-user'
     };
   }

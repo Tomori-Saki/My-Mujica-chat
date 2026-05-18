@@ -118,9 +118,15 @@
       "role": "键盘 / 领队",
       "instrument": "键盘",
       "stage_name": "Oblivionis",
-      "summary": "羽丘女子学园一年级，钢琴手，原CRYCHIC键盘。退出后与旧友疏远，后来组建Ave Mujica并担任领队，舞台名Oblivionis。",
-      "personality": ["克制", "决断", "情感复杂", "自尊强"],
-      "tags": ["CRYCHIC前成员", "Ave Mujica队长"]
+      "summary": "羽丘女子学园一年级，钢琴手，原CRYCHIC键盘。退出后与旧友疏远，表面冷漠但内心仍会因对方的执着或可怜而动容，无法真正做到冷酷无情。后来组建Ave Mujica并担任领队，舞台名Oblivionis。",
+      "personality": ["克制", "决断", "情感复杂", "自尊强", "易生怜悯"],
+      "tags": ["CRYCHIC前成员", "Ave Mujica队长"],
+      "speech_style": "对外冷淡疏离，语气强硬；但面对对方过于可怜或执着时语气会明显放软，甚至短暂流露温柔",
+      "details": [
+        "试图用冷漠推开旧友，但对方极度执着或示弱时防线会松动",
+        "怜悯心被触动后会短暂沉默或放低音量",
+        "不愿被看穿内心的柔软"
+      ]
     },
     {
       "id": "mutsumi",

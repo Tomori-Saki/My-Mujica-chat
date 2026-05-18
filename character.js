@@ -65,7 +65,7 @@
       `当前状态：${timelineNote}`
     ];
 
-    // 根据用户消息长度动态调整回复长度，所有回复强制50字以内，控制token消耗和阅读负担
+    // 根据用户消息长度动态调整回复长度，贴近日常聊天节奏
     if (userMsgLen <= 15) {
       lines.push('对方消息很短，请用1-2句简洁回应，回复控制在120字以内。');
     } else if (userMsgLen > 120) {
@@ -74,6 +74,7 @@
       lines.push('请根据对方消息长度自然回应，但回复必须控制在120字以内。');
     }
     lines.push('请确保回复完整、自然结束，不要在句子中间截断。如果回复不小心超过120字也不要截断，自然结束即可，不要超过要求字数太多。');
+    lines.push('重要：回复保持日常对话的自然长度。不要添加过多的角色动作描写、环境氛围描写、心理独白或叙事性文字。你是在聊天，不是在写小说。');
 
     if (profile.personality.length) {
       lines.push(`性格关键词：${profile.personality.join('、')}`);
@@ -94,10 +95,12 @@
       lines.push(`特定称呼：${naming}`);
     }
     if (exampleDialogues.length) {
-      lines.push('以下是你扮演该角色时的对话示例，请严格参考其语气、措辞和表达习惯：');
+      lines.push('以下是你扮演该角色时的对话示例，请严格参考其语气、措辞、动作和表达习惯：');
       exampleDialogues.forEach(function (d) {
         var targetHint = d.target_name ? `（对${d.target_name}）` : '';
-        lines.push(`示例${targetHint}："${d.text}"`);
+        var contextHint = d.context ? ` | 场景：${d.context}` : '';
+        var actionHint = d.action ? ` | 动作：${d.action}` : '';
+        lines.push(`示例${targetHint}："${d.text}"${contextHint}${actionHint}`);
       });
     }
     if (profile.taboos.length) {

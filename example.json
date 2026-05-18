@@ -18,7 +18,7 @@
       { "text": "（低头沉默了很久，然后轻轻点头）", "source": "It's MyGO!!!!! 多处", "context": "当被问到难以回答的问题时，灯最常见的反应", "action": "灯把脸埋进围巾里，默默点头", "target": null, "target_name": null }
     ],
     "anon": [
-      { "text": "人生这么漫长会撑不住的哦。", "source": "It's MyGO!!!!! 第1集", "context": "KTV包厢内，灯刚说出关于"一辈子"的话", "action": "爱音握着话筒向后靠到沙发上，半开玩笑地笑着回应", "target": "tomori", "target_name": "高松灯" },
+      { "text": "人生这么漫长会撑不住的哦。", "source": "It's MyGO!!!!! 第1集", "context": "KTV包厢内，灯刚说出关于「一辈子」的话", "action": "爱音握着话筒向后靠到沙发上，半开玩笑地笑着回应", "target": "tomori", "target_name": "高松灯" },
       { "text": "来，开始沟通吧。", "source": "It's MyGO!!!!! 第4集", "context": "练习室内气氛尴尬，成员之间互不交流", "action": "爱音双手一拍，用明快的声音打破沉默，扫视了一圈所有人", "target": null, "target_name": null },
       { "text": "不要逃啦。", "source": "It's MyGO!!!!! 第6集", "context": "练习室门口，有人想转身离开", "action": "爱音快步走到门口，单手撑住门框拦住去路", "target": "taki", "target_name": "椎名立希" },
       { "text": "这种事不重要吧。", "source": "It's MyGO!!!!! 第10集", "context": "教室内大家正在为某些细节争执不休", "action": "爱音靠在椅背上翘起椅子，晃着手指轻飘飘地说道", "target": "soyo", "target_name": "长崎素世" },
@@ -28,7 +28,7 @@
       { "text": "Rikki你这什么态度啦～", "source": "It's MyGO!!!!! 中期", "context": "立希用不耐烦的语气说了什么之后", "action": "爱音双手叉腰，上半身前倾，假装生气地瞪着立希", "target": "taki", "target_name": "椎名立希" },
       { "text": "乐奈酱～来一起弹吉他吧！", "source": "It's MyGO!!!!! 中期", "context": "练习室，乐奈正独自拨弄着吉他", "action": "爱音拎着自己的吉他走过去，在乐奈旁边坐下", "target": "rana", "target_name": "要乐奈" },
       { "text": "是啊，这不是由我俩开始的乐队吗？", "source": "It's MyGO!!!!! 第10集", "context": "乐队到了关键时刻，灯感到迷茫时", "action": "爱音蹲下来与坐着的灯平视，收起平时的玩笑，眼神认真", "target": "tomori", "target_name": "高松灯" },
-      { "text": "一辈子什么的……诶，等等，容我想想。", "source": "It's MyGO!!!!! 第4集", "context": "灯再次提到"一辈子"的约定，比第一次更加认真", "action": "爱音先是被震慑住，然后夸张地后退一步摆手，表情从玩笑变成了若有所思", "target": "tomori", "target_name": "高松灯" },
+      { "text": "一辈子什么的……诶，等等，容我想想。", "source": "It's MyGO!!!!! 第4集", "context": "灯再次提到「一辈子」的约定，比第一次更加认真", "action": "爱音先是被震慑住，然后夸张地后退一步摆手，表情从玩笑变成了若有所思", "target": "tomori", "target_name": "高松灯" },
       { "text": "我回来了。", "source": "It's MyGO!!!!! 第10集", "context": "经历了离队风波后，爱音重新推开练习室的门", "action": "爱音站在门口，背着吉他包，用最平常的语气说出这句话", "target": null, "target_name": null }
     ],
     "rana": [
@@ -40,7 +40,7 @@
       { "text": "看了一眼。", "source": "It's MyGO!!!!! 中期", "context": "被问怎么只看了一眼谱子就能弹出来", "action": "乐奈眨眨眼，用最平淡的语气说出让人震惊的话", "target": "anon", "target_name": "千早爱音" },
       { "text": "抹茶……想吃。", "source": "It's MyGO!!!!! 多处", "context": "排练间隙，乐奈的注意力飘到了别处", "action": "乐奈放下吉他，目光投向远处甜品店的方向", "target": null, "target_name": null },
       { "text": "灯，在酝酿情绪。", "source": "It's MyGO!!!!! 后期", "context": "后台，立希正要阻止乐奈吃东西", "action": "乐奈指了指站在一旁闭目凝神的灯，以此为理由继续吃东西", "target": "taki", "target_name": "椎名立希" },
-      { "text": "演出、抹茶、逗猫草、荞麦面、香橙糕。", "source": "It's MyGO!!!!! 后期", "context": "立希问乐奈"幸福是什么"时", "action": "乐奈掰着手指一项项数出来，表情难得变得柔和了一些", "target": "taki", "target_name": "椎名立希" },
+      { "text": "演出、抹茶、逗猫草、荞麦面、香橙糕。", "source": "It's MyGO!!!!! 后期", "context": "立希问乐奈「幸福是什么」时", "action": "乐奈掰着手指一项项数出来，表情难得变得柔和了一些", "target": "taki", "target_name": "椎名立希" },
       { "text": "要下雨了。", "source": "It's MyGO!!!!! 中期", "context": "练习室外天色突然暗了下来", "action": "乐奈抬头看了一眼窗外，话音刚落雨点就砸了下来", "target": null, "target_name": null },
       { "text": "抹茶芭菲。", "source": "It's MyGO!!!!! 后期", "context": "学会用手机发消息后，乐奈发的第一条信息", "action": "乐奈盯着屏幕一个字一个字地打出来（字还打错了），然后满意地按下发送", "target": "taki", "target_name": "椎名立希" },
       { "text": "好烫。", "source": "It's MyGO!!!!! 中期", "context": "有人递给乐奈一个刚出炉的热包子", "action": "乐奈伸手接过来，指尖碰到包子的瞬间缩了一下手", "target": null, "target_name": null }
@@ -50,7 +50,7 @@
       { "text": "为什么……为什么要演奏春日影！", "source": "It's MyGO!!!!! 第7集", "context": "Live现场，MyGO!!!!!即兴演奏《春日影》后，爽世在后台情绪失控", "action": "爽世双眼通红冲出后台，声音颤抖中带着无法抑制的愤怒和悲伤", "target": null, "target_name": null },
       { "text": "你误会了。", "source": "It's MyGO!!!!! 第8集", "context": "祥子在飞鸟山公园冷冷回应后", "action": "爽世仍跪在地上，拼命摇头试图辩解，声音已经哭哑", "target": "sakiko", "target_name": "丰川祥子" },
       { "text": "太过分了。", "source": "It's MyGO!!!!! 第8集", "context": "飞鸟山公园，被祥子一番话彻底击垮后", "action": "爽世跪在原地，双手撑地，低着头喃喃重复这句话", "target": null, "target_name": null },
-      { "text": "什么意思。", "source": "It's MyGO!!!!! 第10集", "context": "教室内，爱音说"这种事不重要吧"后", "action": "爽世猛地转头看向爱音，温柔外表下露出罕见的尖锐", "target": "anon", "target_name": "千早爱音" },
+      { "text": "什么意思。", "source": "It's MyGO!!!!! 第10集", "context": "教室内，爱音说「这种事不重要吧」后", "action": "爽世猛地转头看向爱音，温柔外表下露出罕见的尖锐", "target": "anon", "target_name": "千早爱音" },
       { "text": "我大概一辈子也忘不了CRYCHIC吧。", "source": "It's MyGO!!!!! 第13集", "context": "夜晚，爽世独自走在回家的路上", "action": "爽世停下脚步抬头看向夜空，嘴角带着一丝释然的苦笑", "target": null, "target_name": null },
       { "text": "誓言什么的，那当然是骗人的啊。", "source": "It's MyGO!!!!! 第9集", "context": "学校里走廊，与灯的短暂对话", "action": "爽世靠着走廊的墙壁，避开灯的视线，语气轻飘飘但眼底有苦涩", "target": "tomori", "target_name": "高松灯" },
       { "text": "小灯的歌词，真的很美。", "source": "It's MyGO!!!!! 后期", "context": "练习室内，读完灯新写的歌词后", "action": "爽世将歌词本轻轻合上，递给灯时眼神温柔中带着落寞", "target": "tomori", "target_name": "高松灯" },
@@ -63,7 +63,7 @@
       { "text": "你在开玩笑吗？", "source": "It's MyGO!!!!! 第4集", "context": "练习室内，爱音提出了某个让立希觉得离谱的提议", "action": "立希停下手中的鼓棒，用看傻子一样的眼神瞪向爱音", "target": "anon", "target_name": "千早爱音" },
       { "text": "不要讲这种话。", "source": "It's MyGO!!!!! 第6集", "context": "练习室气氛紧张，有人说了否定自己的话", "action": "立希用力敲了一下鼓面发出闷响打断对话，声音低沉而认真", "target": "anon", "target_name": "千早爱音" },
       { "text": "你这话是认真的吗？", "source": "It's MyGO!!!!! 第9集", "context": "RiNG咖啡厅，海铃说出某句话后", "action": "立希放下咖啡杯，皱眉盯着对面的海铃", "target": "umiri", "target_name": "八幡海铃" },
-      { "text": "主唱太拼命了？……我要拉黑他！", "source": "It's MyGO!!!!! 第3集", "context": "立希看到网上有人评论灯在Live上"太拼命"", "action": "立希盯着手机屏幕咬牙切齿，手指狠狠戳向拉黑按钮", "target": null, "target_name": null },
+      { "text": "主唱太拼命了？……我要拉黑他！", "source": "It's MyGO!!!!! 第3集", "context": "立希看到网上有人评论灯在Live上「太拼命」", "action": "立希盯着手机屏幕咬牙切齿，手指狠狠戳向拉黑按钮", "target": null, "target_name": null },
       { "text": "Tomori，你不用勉强自己。", "source": "It's MyGO!!!!! 中期", "context": "灯试图做一些超出自己舒适区的事情时", "action": "立希停下手中的活，语气虽然生硬但藏不住关心", "target": "tomori", "target_name": "高松灯" },
       { "text": "Tomori的歌词……写得很好。", "source": "It's MyGO!!!!! 中期", "context": "灯把歌词递给立希看，忐忑地等待评价", "action": "立希读完沉默了几秒，用少见的柔和语气说出这句话，不敢直视灯", "target": "tomori", "target_name": "高松灯" },
       { "text": "你这家伙，又擅自加即兴。", "source": "It's MyGO!!!!! 后期", "context": "排练中，乐奈又一次随心所欲地改变了演奏段落", "action": "立希用鼓棒指向乐奈，语气凶狠但手上没停", "target": "rana", "target_name": "要乐奈" },

@@ -4,19 +4,18 @@ WORKDIR /frontend
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend ./
-# 执行前端打包（因为配置了 vite.config.js，产物会直接吐进 backend 目录）
+# 执行前端打包（这次让它生成在默认的 frontend/dist 里）
 RUN npm run build
 
 # ================= 阶段二：后端编译 =================
 FROM maven:3.9.6-eclipse-temurin-17 AS backend-build
 WORKDIR /app
-
-# 先把包含前端打包产物的全部后端代码复制进来
 COPY backend/pom.xml .
 COPY backend/src ./src
 
-# 👉 核心修改：删掉了之前报错的 COPY --from=frontend-build 行。
-# 因为在“阶段一”中，文件已经通过相对路径进到 backend/src/main/resources/static 了，所以不需要二次复制。
+# 👉 核心修改：明确从阶段一的 /frontend/dist 中，将打包好的前端静态资源
+# 强行复制到 Maven 正在编译的后端的 target/classes/static 目录下（这是最终打包进 Jar 里的绝对路径）
+COPY --from=frontend-build /frontend/dist ./target/classes/static
 
 # 执行后端打包
 RUN mvn clean package -DskipTests

@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(python *)",
+      "WebSearch",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git rebase *)",
+      "Bash(node -e \"var c=require\\('./character.json'\\); console.log\\('character.json OK,', c.characters.length, 'characters'\\)\")",
+      "Bash(node -e \"var e=require\\('./example.json'\\); var d=e.dialogues; Object.keys\\(d\\).forEach\\(function\\(k\\){console.log\\(k+': '+d[k].length+' lines'\\)}\\)\")",
+      "Bash(node -e \"try{require\\('./character.json'\\); console.log\\('character.json valid'\\)}catch\\(e\\){console.log\\('ERROR:',e.message\\)}; try{require\\('./example.json'\\); console.log\\('example.json valid'\\)}catch\\(e\\){console.log\\('ERROR:',e.message\\)}; try{require\\('./timeline.json'\\); console.log\\('timeline.json valid'\\)}catch\\(e\\){console.log\\('ERROR:',e.message\\)}\")",
+      "Bash(node -e \"var fs=require\\('fs'\\); var t=fs.readFileSync\\('example.json','utf-8'\\); console.log\\('Position 2346:', JSON.stringify\\(t.substring\\(2340,2360\\)\\), 'char:', t.charCodeAt\\(2346\\), 'hex:', t.charCodeAt\\(2346\\).toString\\(16\\)\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p D:/AI_Project/MyGo_chat/database)",
+      "Bash(mkdir -p D:/AI_Project/MyGo_chat/refs)",
+      "Bash(java -version)",
+      "Bash(mvn -version)",
+      "Bash(npm -v)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(rm -f D:/AI_Project/MyGo_chat/frontend/src/assets/hero.png D:/AI_Project/MyGo_chat/frontend/src/assets/vite.svg D:/AI_Project/MyGo_chat/frontend/public/favicon.svg)",
+      "Bash(npx vite *)",
+      "Bash(git rm *)",
+      "Bash(echo \"backend/target/\")"
+    ]
+  }
+}

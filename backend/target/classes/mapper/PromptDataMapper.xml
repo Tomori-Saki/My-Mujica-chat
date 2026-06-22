@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bangchat.data.mapper.PromptDataMapper">
+
+    <!-- 查询某时间线下所有角色基础信息 -->
+    <select id="findCharactersByTimeline" resultType="com.bangchat.data.entity.CharacterProfile">
+        SELECT DISTINCT cp.id, cp.name_cn, cp.name_jp, cp.name_en,
+               cp.band_id, cp.school, cp.role, cp.instrument,
+               cp.stage_name, cp.summary
+        FROM character_profile cp
+        JOIN timeline_character_state tcs ON cp.id = tcs.character_id
+        WHERE tcs.timeline_id = #{timelineId}
+    </select>
+
+    <!-- 查询角色在某时间线下的状态 -->
+    <select id="findTimelineState" resultType="com.bangchat.data.entity.TimelineCharacterState">
+        SELECT id, timeline_id, character_id,
+               state_description, personality_adjust, speech_adjust
+        FROM timeline_character_state
+        WHERE timeline_id = #{timelineId} AND character_id = #{characterId}
+    </select>
+
+    <!-- 查询角色性格标签，按排序字段升序 -->
+    <select id="findPersonalityTraits" resultType="com.bangchat.data.entity.PersonalityTrait">
+        SELECT id, character_id, trait, sort_order
+        FROM personality_trait
+        WHERE character_id = #{characterId}
+        ORDER BY sort_order
+    </select>
+
+    <!-- 查询角色说话语气 -->
+    <select id="findSpeechStyle" resultType="com.bangchat.data.entity.SpeechStyle">
+        SELECT id, character_id, description
+        FROM speech_style
+        WHERE character_id = #{characterId}
+    </select>
+
+    <!-- 查询角色行为细节 -->
+    <select id="findCharacterDetails" resultType="com.bangchat.data.entity.CharacterDetail">
+        SELECT id, character_id, detail, sort_order
+        FROM character_detail
+        WHERE character_id = #{characterId}
+        ORDER BY sort_order
+    </select>
+
+    <!-- 查询角色特殊称呼 -->
+    <select id="findSpecialAddressings" resultType="com.bangchat.data.entity.SpecialAddressing">
+        SELECT id, character_id, target_name, alias, note
+        FROM special_addressing
+        WHERE character_id = #{characterId}
+    </select>
+
+    <!-- 查询时间线信息 -->
+    <select id="findTimelineById" resultType="com.bangchat.data.entity.Timeline">
+        SELECT id, title, summary, crychic_status, mygo_status, avemujica_status
+        FROM timeline
+        WHERE id = #{timelineId}
+    </select>
+
+</mapper>

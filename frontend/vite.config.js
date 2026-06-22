@@ -16,7 +16,7 @@ export default defineConfig({
   },
   build: {
     // 关键核心修改：将打包产物直接输出到后端的静态资源文件夹
-    outDir: '../backend/src/main/resources/static',
+    outDir: 'dist',
     emptyOutDir: true // 打包前清空该目录
   }
 })

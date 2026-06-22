@@ -4,7 +4,6 @@ WORKDIR /frontend
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend ./
-# 执行前端打包（这次让它生成在默认的 frontend/dist 里）
 RUN npm run build
 
 # ================= 阶段二：后端编译 =================
@@ -13,12 +12,12 @@ WORKDIR /app
 COPY backend/pom.xml .
 COPY backend/src ./src
 
-# 👉 核心修改：明确从阶段一的 /frontend/dist 中，将打包好的前端静态资源
-# 强行复制到 Maven 正在编译的后端的 target/classes/static 目录下（这是最终打包进 Jar 里的绝对路径）
-COPY --from=frontend-build /frontend/dist ./target/classes/static
+# 👉 核心修正：先把前端产物拷贝到源码的 resources/static 目录下
+COPY --from=frontend-build /frontend/dist ./src/main/resources/static
 
-# 执行后端打包
-RUN mvn clean package -DskipTests
+# 👉 核心修正：去掉 clean，直接 package！
+# 这样 Maven 打包时就会把 src/main/resources/static 里的前端文件稳稳地打包进最终的 Jar 包中
+RUN mvn package -DskipTests
 
 # ================= 阶段三：轻量运行时 =================
 FROM eclipse-temurin:17-jre-alpine

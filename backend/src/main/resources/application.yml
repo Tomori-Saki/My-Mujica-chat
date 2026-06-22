@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: bangchat
+
+  datasource:
+    url: jdbc:sqlite:bangchat.db
+    driver-class-name: org.sqlite.JDBC
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.bangchat.data.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.bangchat: DEBUG

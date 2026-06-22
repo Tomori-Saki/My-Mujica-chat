@@ -4,15 +4,15 @@ WORKDIR /frontend
 # 复制前端代码
 COPY ../frontend/package*.json ./
 RUN npm install
-COPY ../frontend ./
+COPY frontend ./
 # 执行打包，由于配置了 vite.config.js，它会自动把产物吐到后端的 static 目录
 RUN npm run build
 
 # ================= 阶段二：后端编译 =================
 FROM maven:3.9.6-eclipse-temurin-17 AS backend-build
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+COPY backend/pom.xml .
+COPY backend/src ./src
 
 # 关键：从阶段一中，把前端打包好的静态文件，复制到后端的静态资源目录中
 COPY --from=frontend-build /backend/src/main/resources/static ./src/main/resources/static

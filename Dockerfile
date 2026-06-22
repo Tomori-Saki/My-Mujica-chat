@@ -1,5 +1,5 @@
 # ================= 阶段一：前端打包 =================
-FROM node:18-alpine AS frontend-build
+FROM node:20-alpine AS frontend-build
 WORKDIR /frontend
 # 此时位于根目录，直接访问 frontend 文件夹
 COPY frontend/package*.json ./

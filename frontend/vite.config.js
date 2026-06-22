@@ -1,9 +1,14 @@
+import { fileURLToPath, URL } from 'node:url' // 👉 关键：补上这行导入
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [vue()],
+  // 保持你原有的插件配置，别忘了把 tailwindcss() 也加上（我看你之前写在 import 里但下面没传）
+  plugins: [
+    vue(),
+    tailwindcss()
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

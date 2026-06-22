@@ -1,5 +1,5 @@
 # 阶段一：使用 Maven 镜像在云端编译
-FROM maven:3.8.5-openjdk-17-slim AS build
+FROM maven:3.8.5-eclipse-temurin:17-jre-alpine AS build
 WORKDIR /app
 
 # 复制后端代码并编译打包
@@ -8,7 +8,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # 阶段二：使用轻量级 JDK 运行
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
 # 从编译阶段复制打包好的 jar 包

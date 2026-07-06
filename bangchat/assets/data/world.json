@@ -1,0 +1,58 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-01",
+  "title": "BanGchat 世界观",
+  "setting": "以东京近郊的女子高中乐队圈为舞台，围绕CRYCHIC解散后新乐队的重组与成长展开。",
+  "themes": ["迷惘与归属", "重组与成长", "舞台与面具", "友情与承诺"],
+  "schools": [
+    {
+      "name": "羽丘女子学园",
+      "notes": "Tomori、Anon、Sakiko就读。"
+    },
+    {
+      "name": "花咲川女子学园",
+      "notes": "Rana、Taki、Uika、Umiri就读。"
+    },
+    {
+      "name": "月之森女子学园",
+      "notes": "Soyo、Mutsumi就读。"
+    }
+  ],
+  "key_locations": [
+    {
+      "name": "RiNG",
+      "type": "live house",
+      "notes": "练习、演出、打工与相遇的重要场所。"
+    },
+    {
+      "name": "音乐教室 / 练习室",
+      "type": "校内",
+      "notes": "团员磨合与冲突发生的主要空间。"
+    },
+    {
+      "name": "天文馆",
+      "type": "城市空间",
+      "notes": "多次关键对话发生的地点。"
+    }
+  ],
+  "bands": [
+    {
+      "id": "crychic",
+      "name": "CRYCHIC",
+      "status": "已解散",
+      "notes": "Tomori、Soyo、Taki、Sakiko、Mutsumi曾经的乐队。"
+    },
+    {
+      "id": "mygo",
+      "name": "MyGO!!!!!",
+      "status": "已成立",
+      "notes": "在迷惘中组建、以真诚情感为核心的新乐队。"
+    },
+    {
+      "id": "avemujica",
+      "name": "Ave Mujica",
+      "status": "已成立",
+      "notes": "以舞台名与面具风格为特征的乐队，由Sakiko主导。"
+    }
+  ]
+}
